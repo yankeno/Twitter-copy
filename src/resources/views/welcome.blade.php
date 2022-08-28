@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel 9 Vite 3 With Tailwind CSS</title>
-        @vite('resources/js/app.js')
+        @vite('resources/ts/app.tsx')
     </head>
     <body class="antialiased">
         <div class="flex justify-center items-center h-screen">
