@@ -7,6 +7,12 @@ install:
 	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
+	docker-compose exec app composer require laravel/ui
+	docker-compose exec app php artisan ui react --auth
+	cd src
+	npm install
+	touch tsconfig.json
+	npx tailwindcss init
 	@make fresh
 clean:
 	docker compose down --rmi all --volumes --remove-orphans
