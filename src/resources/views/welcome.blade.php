@@ -4,11 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel 9 Vite 3 With Tailwind CSS</title>
+        @viteReactRefresh
         @vite('resources/ts/app.tsx')
     </head>
     <body class="antialiased">
-        <div class="flex justify-center items-center h-screen">
-            <h1 class="text-3xl text-purple-600 font-bold">Laravel 9 Vite with Tailwind CSS</h1>
-        </div>
+        <div id="app"></div>
     </body>
 </html>
