@@ -12,7 +12,8 @@
         "moduleResolution": "node",
         "target": "es6",
         "lib": ["es2016", "dom"],
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
     },
     "include": ["resources/ts/**/*"]
 }

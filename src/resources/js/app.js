@@ -12,6 +12,6 @@ import "./bootstrap";
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import "./components/Example";
+import "../ts/components/Example";
 
 import "../css/app.css";
