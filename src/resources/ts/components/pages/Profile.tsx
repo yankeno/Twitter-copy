@@ -1,10 +1,10 @@
 import React from "react";
 import { memo, FC } from "react";
 
-export const Home: FC = memo(() => {
+export const Profile: FC = memo(() => {
     return (
         <>
-            <p>Home</p>
+            <p>Profile</p>
         </>
     );
 });

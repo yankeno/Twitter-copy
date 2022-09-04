@@ -1,10 +1,10 @@
 import React from "react";
 import { memo, FC } from "react";
 
-export const Home: FC = memo(() => {
+export const Explore: FC = memo(() => {
     return (
         <>
-            <p>Home</p>
+            <p>Notification</p>
         </>
     );
 });

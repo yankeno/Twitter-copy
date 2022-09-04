@@ -1,8 +1,13 @@
-import React from "react";
-import { FC } from "react";
+import React, { useCallback } from "react";
+import { FC, memo } from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { useNavigate } from "react-router-dom";
 
-export const Login: FC = () => {
+export const Login: FC = memo(() => {
+    const navigate = useNavigate();
+    const onClickHome = useCallback(() => {
+        navigate("/home");
+    }, []);
     return (
         <>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -16,15 +21,7 @@ export const Login: FC = () => {
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                             Sign in to your account
                         </h2>
-                        <p className="mt-2 text-center text-sm text-gray-600">
-                            Or{" "}
-                            <a
-                                href="#"
-                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                            >
-                                start your 14-day free trial
-                            </a>
-                        </p>
+                        <p className="mt-2 text-center text-sm text-gray-600"></p>
                     </div>
                     <form className="mt-8 space-y-6" action="#" method="POST">
                         <input
@@ -111,4 +108,4 @@ export const Login: FC = () => {
             </div>
         </>
     );
-};
+});

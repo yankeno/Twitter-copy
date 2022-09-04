@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel 9 Vite 3 With Tailwind CSS</title>
+        <title>Twitter-copy</title>
         @viteReactRefresh
         @vite('resources/ts/app.tsx')
     </head>
