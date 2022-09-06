@@ -10,7 +10,7 @@ export const SecondaryButton: FC<Props> = memo((props) => {
     const { children, onClick } = props;
     return (
         <button
-            className="bg-blue-400 hover:bg-blue-400/90 text-white font-bold py-4 px-16 w-50 rounded-full flex"
+            className="bg-blue-400 hover:bg-blue-400/90 text-white font-bold py-4 px-16 mx-2 my-2 w-50 rounded-full flex"
             onClick={onClick}
         >
             {children}
