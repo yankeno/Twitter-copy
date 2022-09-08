@@ -3,7 +3,7 @@ import { memo, FC } from "react";
 import { SecondaryButton } from "./SecondaryBytton";
 
 const onClickAlert = () => alert("tweet button");
-export const TweetButton: FC = memo(() => {
+export const PrimaryTweetButton: FC = memo(() => {
     return (
         <SecondaryButton onClick={onClickAlert}>
             <p>ツイートする</p>

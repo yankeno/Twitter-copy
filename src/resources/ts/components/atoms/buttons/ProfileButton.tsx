@@ -8,9 +8,9 @@ const onClickAlert = () => alert("profile button");
 export const ProfileButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickAlert}>
-            <IconContext.Provider value={{ size: "20px" }}>
+            <IconContext.Provider value={{ size: "28px" }}>
                 <BsPersonCircle />
-                &nbsp;プロフィール
+                <span className="mx-4">プロフィール</span>
             </IconContext.Provider>
         </PrimaryButton>
     );

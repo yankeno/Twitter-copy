@@ -1,16 +1,16 @@
 import React from "react";
 import { memo, FC } from "react";
-import { BiBell } from "react-icons/bi";
-import { IconContext } from "react-icons";
+import { AiOutlineMail } from "react-icons/ai";
 import { PrimaryButton } from "./PrimaryButton";
+import { IconContext } from "react-icons";
 
-const onClickAlert = () => alert("notification button");
-export const NotificationButton: FC = memo(() => {
+const onClickAlert = () => alert("message button");
+export const MessageButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickAlert}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <BiBell />
-                <span className="mx-4">通知</span>
+                <AiOutlineMail />
+                <span className="mx-4">メッセージ</span>
             </IconContext.Provider>
         </PrimaryButton>
     );

@@ -8,9 +8,9 @@ const onClickAlert = () => alert("home button");
 export const HomeButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickAlert}>
-            <IconContext.Provider value={{ size: "23px" }}>
+            <IconContext.Provider value={{ size: "28px" }}>
                 <HiHome />
-                &nbsp;ホーム
+                <span className="mx-4">ホーム</span>
             </IconContext.Provider>
         </PrimaryButton>
     );

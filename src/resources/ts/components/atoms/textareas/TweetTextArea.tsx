@@ -5,7 +5,7 @@ type Props = {
     placeholder: string;
 };
 
-export const TweetArea: FC<Props> = memo((props) => {
+export const TweetTextArea: FC<Props> = memo((props) => {
     const { placeholder } = props;
 
     /**
@@ -16,7 +16,6 @@ export const TweetArea: FC<Props> = memo((props) => {
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
-    console.log(text);
 
     return (
         <textarea

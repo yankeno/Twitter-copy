@@ -8,9 +8,9 @@ const onClickAlert = () => alert("explore button");
 export const ExploreButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickAlert}>
-            <IconContext.Provider value={{ size: "23px" }}>
+            <IconContext.Provider value={{ size: "28px" }}>
                 <BiSearch />
-                &nbsp;検索
+                <span className="mx-4">検索</span>
             </IconContext.Provider>
         </PrimaryButton>
     );
