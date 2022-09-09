@@ -11,7 +11,9 @@ export const TweetAreaIcon: FC<Props> = memo((props) => {
     const { children } = props;
     return (
         <IconContext.Provider value={{ size: "28px" }}>
-            <div className="md:flex mx-2">{children}</div>
+            <div className="md:flex mx-2 h-6 hover:opacity-75 cursor-pointer">
+                {children}
+            </div>
         </IconContext.Provider>
     );
 });
