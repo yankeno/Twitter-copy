@@ -19,7 +19,7 @@ export const TweetTextArea: FC<Props> = memo((props) => {
 
     return (
         <textarea
-            className="textarea w-96 h-24 px-2 py-2 outline-none resize-none"
+            className="textarea w-[500px] h-24 px-2 py-2 text-lg outline-none resize-none"
             placeholder={placeholder}
             onChange={onChangeText}
         ></textarea>

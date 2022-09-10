@@ -12,8 +12,8 @@ export const SideMenu: FC = memo(() => {
     return (
         <>
             <aside
-                className="w-96 pl-20 h-screen sticky top-0 inline-block"
-                aria-label="Sidebar"
+                className="w-96 pl-20 h-screen sticky top-0 inline-block border-r"
+                aria-label="Sidemenu"
             >
                 <div className="overflow-y-auto py-2 px-2">
                     <ul className="space-y-2">

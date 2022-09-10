@@ -5,19 +5,19 @@ import { EmojiIcon } from "../atoms/icons/EmojiIcon";
 import { PictureIcon } from "../atoms/icons/PictureIcon";
 import { VoteIcon } from "../atoms/icons/VoteIcon";
 import { ProfileAvatar } from "../atoms/picture/ProfileAvatar";
-import { TweetTextArea } from "../atoms/textareas/TweetTextArea";
+import { TweetTextArea } from "../atoms/input/TweetTextArea";
 import { ReserveIcon } from "../atoms/icons/ReserveIcon";
 import { GifIcon } from "../atoms/icons/GifIcon";
 import { SecondaryTweetButton } from "../atoms/buttons/SecondaryTweetButton";
 
 export const TweetArea: FC = memo(() => {
     return (
-        <div className="w-2/3">
+        <div className="w-296 h-44 border-solid border-b">
             <div className="flex justify-start">
                 <div className="h-24 w-14 m-4">
                     <ProfileAvatar url="http://placekitten.com/g/200/200" />
                 </div>
-                <div className="ml-2 mt-4 w-5/6">
+                <div className="ml-2 mt-4">
                     <TweetTextArea placeholder="いまどうしてる？" />
                 </div>
             </div>
@@ -30,7 +30,7 @@ export const TweetArea: FC = memo(() => {
                     <EmojiIcon />
                     <ReserveIcon />
                 </div>
-                <div className="ml-52">
+                <div className="ml-48">
                     <SecondaryTweetButton />
                 </div>
             </div>
