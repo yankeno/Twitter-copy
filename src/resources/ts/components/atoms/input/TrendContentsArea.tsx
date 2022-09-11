@@ -4,8 +4,12 @@ import { NewsContent } from "../../molecules/NewsContent";
 
 export const TrendContentsArea: FC = memo(() => {
     return (
-        <div className="w-96 bg-stone-200 rounded-lg border border-gray-200">
-            <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-500">
+        /**
+         * border-radius からはみ出た部分を表示しない場合は
+         * overflow-hidden を使う
+         */
+        <div className="w-96 m-4 bg-stone-200 rounded-xl overflow-hidden border border-gray-200">
+            <h5 className="px-2 pt-4 mb-2 text-xl font-bold tracking-tight text-gray-500">
                 いまどうしてる？
             </h5>
             <NewsContent />

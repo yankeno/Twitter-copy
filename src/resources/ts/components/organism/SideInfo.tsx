@@ -6,8 +6,13 @@ import { TrendContentsArea } from "../atoms/input/TrendContentsArea";
 export const SideInfo: FC = memo(() => {
     return (
         <>
-            <SearchInput />
-            <TrendContentsArea />
+            <aside
+                className="h-screen sticky top-0 inline-block border-l"
+                aria-label="Sidemenu"
+            >
+                <SearchInput />
+                <TrendContentsArea />
+            </aside>
         </>
     );
 });
