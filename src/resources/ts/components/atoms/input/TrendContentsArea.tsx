@@ -9,7 +9,7 @@ export const TrendContentsArea: FC = memo(() => {
          * overflow-hidden を使う
          */
         <div className="w-96 m-4 bg-stone-200 rounded-xl overflow-hidden border border-gray-200">
-            <h5 className="px-2 pt-4 mb-2 text-xl font-bold tracking-tight text-gray-500">
+            <h5 className="px-4 pt-4 mb-2 text-xl font-bold tracking-tight text-gray-500">
                 いまどうしてる？
             </h5>
             <NewsContent />
