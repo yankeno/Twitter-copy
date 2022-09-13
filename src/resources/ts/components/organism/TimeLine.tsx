@@ -14,6 +14,7 @@ export const TimeLine: FC = memo((props) => {
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
                 tweet="三助ダサい"
+                isLiked={true}
             />
         </>
     );

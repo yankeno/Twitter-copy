@@ -7,6 +7,7 @@ type Props = {
     id: string;
     userName: string;
     isAuthAccount: boolean;
+    isLiked: boolean;
     avatarUrl: string;
     tweet: string;
 };
@@ -17,8 +18,8 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         <div>
             <ProfileAvatar url={avatarUrl} />
             {userName}
-            {isAuthAccount && <AuthorizedBadgeIcon />}
-            {id}
+            <span>{isAuthAccount && <AuthorizedBadgeIcon />}</span>
+            <span className="text-sm text-gray-400">@{id}</span>
             {tweet}
         </div>
     );
