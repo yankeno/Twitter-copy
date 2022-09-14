@@ -7,7 +7,7 @@ import { PosteAreaIcon } from "./PostedAreaIcon";
 export const ReplyIcon: FC = memo(() => {
     return (
         <PosteAreaIcon>
-            <ImBubble />
+            <ImBubble color="#9ca3af" />
         </PosteAreaIcon>
     );
 });

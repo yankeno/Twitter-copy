@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 export const AuthorizedBadgeIcon: FC = memo(() => {
     return (
         <div>
-            <IconContext.Provider value={{ size: "18px" }}>
+            <IconContext.Provider value={{ size: "20px", color: "#64748b" }}>
                 <BiBadgeCheck />
             </IconContext.Provider>
         </div>

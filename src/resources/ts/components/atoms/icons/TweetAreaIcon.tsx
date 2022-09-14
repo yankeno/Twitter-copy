@@ -10,7 +10,7 @@ type Props = {
 export const TweetAreaIcon: FC<Props> = memo((props) => {
     const { children } = props;
     return (
-        <IconContext.Provider value={{ size: "28px" }}>
+        <IconContext.Provider value={{ size: "28px", color: "#374151" }}>
             <div className="md:flex mx-2 h-6 hover:opacity-75 cursor-pointer">
                 {children}
             </div>

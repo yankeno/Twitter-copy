@@ -9,11 +9,10 @@ import { TimeLine } from "../organism/TimeLine";
 
 export const Home: FC = memo(() => {
     return (
-        <div className="flex justify-start">
-            {/* <SideMenu />
-            <TweetArea />
-            <SideInfo /> */}
+        <div className="flex justify-start overscroll-none">
+            <SideMenu />
             <TimeLine />
+            <SideInfo />
         </div>
     );
 });

@@ -12,7 +12,7 @@ import { SecondaryTweetButton } from "../atoms/buttons/SecondaryTweetButton";
 
 export const TweetArea: FC = memo(() => {
     return (
-        <div className="w-296 h-44 border-solid border-b">
+        <div className="h-44 border-solid border-b">
             <div className="flex justify-start">
                 <div className="h-24 w-14 m-4">
                     <ProfileAvatar url="http://placekitten.com/g/200/200" />
@@ -30,7 +30,7 @@ export const TweetArea: FC = memo(() => {
                     <EmojiIcon />
                     <ReserveIcon />
                 </div>
-                <div className="ml-48">
+                <div className="ml-44">
                     <SecondaryTweetButton />
                 </div>
             </div>
