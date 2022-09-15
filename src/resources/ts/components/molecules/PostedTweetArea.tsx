@@ -34,7 +34,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         </span>
                     </div>
                     <div className="py-2 min-h-16">{tweet}</div>
-                    <div className="flex justify-start gap-x-24 items-end">
+                    <div className="flex justify-start gap-x-32 items-end">
                         <ReplyIcon />
                         <LikedIcon isLiked={true} />
                         <RetweetIcon isRetweeted={false} />
