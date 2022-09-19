@@ -1,8 +1,5 @@
 import React from "react";
 import { memo, FC } from "react";
-import { LikedIcon } from "../atoms/icons/LikedIcon";
-import { ReplyIcon } from "../atoms/icons/ReplyIcon";
-import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
 import { TweetArea } from "../molecules/TweetArea";

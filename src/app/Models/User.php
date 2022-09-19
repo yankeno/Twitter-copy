@@ -13,6 +13,11 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function tweet()
+    {
+        return $this->hasOne('App\Models\Tweet');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,23 +48,23 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-       /**
-    * Get the identifier that will be stored in the subject claim of the JWT.
-    *
-    * @return mixed
-    */
-   public function getJWTIdentifier()
-   {
-       return $this->getKey();
-   }
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
-   /**
-    * Return a key value array, containing any custom claims to be added to the JWT.
-    *
-    * @return array
-    */
-   public function getJWTCustomClaims()
-   {
-       return [];
-   }
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
