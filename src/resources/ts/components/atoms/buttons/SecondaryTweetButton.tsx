@@ -16,8 +16,8 @@ const onClickSendTweet = () => {
     }
 
     const data = {
-        tweet: tweet.value,
         userId: 8, // 一旦固定値で入れておく
+        tweet: tweet.value,
     };
 
     fetch(`${baseUrl}/api/tweet/create`, {

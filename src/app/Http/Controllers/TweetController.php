@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class TweetController extends Controller
 {
-    public function Index(Request $request)
+    public function Index()
     {
         return Tweet::all();
     }
@@ -24,7 +24,7 @@ class TweetController extends Controller
                 'request' => $request->all(),
             ]);
             return response()->json([
-                'mesasge' => 'failed'
+                'message' => 'failed'
             ]);
         }
 

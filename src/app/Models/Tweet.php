@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
@@ -18,7 +17,7 @@ class Tweet extends Model
     {
         return [
             'userId' => 'required|numeric',
-            'tweet' => 'required|string',
+            'tweet' => 'required|string|min:1|max:140',
         ];
     }
 
