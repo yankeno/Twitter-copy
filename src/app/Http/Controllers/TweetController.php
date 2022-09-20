@@ -9,16 +9,18 @@ use Illuminate\Support\Facades\Validator;
 
 class TweetController extends Controller
 {
-    public function Index()
+    public function index()
     {
         return Tweet::all();
     }
 
-    public function Create(Request $request)
+    public function create(Request $request)
     {
         $tweet = new Tweet();
-        $validator = Validator::make($request->all(), $tweet->rules());
-
+        $validator = Validator::make(
+            $request->all(),
+            $tweet->rules()
+        );
         if ($validator->fails()) {
             Log::error($validator->errors(), [
                 'request' => $request->all(),
@@ -27,9 +29,6 @@ class TweetController extends Controller
                 'message' => 'failed'
             ]);
         }
-
-        return response()->json([[
-            'message' => 'successfull'
-        ]]);
+        return $tweet->store($request);
     }
 }

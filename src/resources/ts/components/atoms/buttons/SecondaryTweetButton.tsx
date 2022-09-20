@@ -1,5 +1,6 @@
 import React from "react";
 import { memo, FC } from "react";
+import { resolvePath } from "react-router-dom";
 
 const baseUrl = import.meta.env.VITE_APP_URL;
 const headers = {
@@ -13,6 +14,7 @@ const onClickSendTweet = () => {
     }
     if (tweet.value.length <= 0) {
         alert("ツイート内容を入力してください。");
+        return;
     }
 
     const data = {
@@ -24,14 +26,20 @@ const onClickSendTweet = () => {
         method: "POST",
         headers: headers,
         body: JSON.stringify(data),
-    }).then((res) => {
-        if (!res.ok) {
-            alert("ツイートの送信に失敗しました。");
-            return;
-        }
-        alert("ツイートを送信しました。");
-        tweet.value = "";
-    });
+    })
+        .then((res) => {
+            if (!res.ok) {
+                alert("ツイートの送信に失敗しました。");
+                return;
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if (data[0].message === "successfull") {
+                alert("ツイートを送信しました。");
+                tweet.value = "";
+            }
+        });
 };
 
 export const SecondaryTweetButton: FC = memo(() => {

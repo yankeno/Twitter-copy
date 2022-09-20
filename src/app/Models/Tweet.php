@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     public function user()
     {
@@ -21,7 +22,14 @@ class Tweet extends Model
         ];
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $this->tweet = $request->tweet;
+        $this->user_id = $request->userId;
+        $this->user_agent = $request->header('User-Agent');
+        $this->save();
+        return response()->json([[
+            'message' => 'successfull'
+        ]]);
     }
 }
