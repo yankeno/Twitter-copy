@@ -15,13 +15,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('account')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('account', 50)->unique();
+            $table->string('name', 127);
+            $table->string('family_name', 127);
+            $table->string('given_name', 127);
+            $table->string('email', 255)->unique();
+            $table->dateTime('email_verified_at')->nullable();
+            $table->boolean('authorized');
+            $table->string('avatar_url');
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
@@ -32,6 +38,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('tweets');
         Schema::dropIfExists('users');
     }
 };
