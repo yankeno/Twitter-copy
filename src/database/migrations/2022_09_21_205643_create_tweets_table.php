@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->string('account', 50)->unique();
-            $table->string('name', 127);
-            $table->string('family_name', 127);
-            $table->string('given_name', 127);
-            $table->string('email', 255)->unique();
-            $table->dateTime('email_verified_at')->nullable();
-            $table->boolean('authorized');
-            $table->string('avatar_url');
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tweet', 200);
+            $table->unsignedInteger('likes')->default(0);
+            $table->unsignedInteger('retweets')->default(0);
+            $table->unsignedInteger('replies')->default(0);
+            $table->string('user_agent', 1000);
             $table->dateTime('created_at')->nullable()->useCurrent();
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
             $table->dateTime('deleted_at')->nullable();
@@ -39,6 +36,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('tweets');
-        Schema::dropIfExists('users');
     }
 };

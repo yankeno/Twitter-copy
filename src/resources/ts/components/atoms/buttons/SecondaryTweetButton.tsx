@@ -18,7 +18,7 @@ const onClickSendTweet = () => {
     }
 
     const data = {
-        userId: 8, // 一旦固定値で入れておく
+        userId: 1, // 一旦固定値で入れておく
         tweet: tweet.value,
     };
 
