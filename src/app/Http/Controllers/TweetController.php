@@ -11,15 +11,16 @@ class TweetController extends Controller
 {
     public function index()
     {
-        return Tweet::all();
+        $tweet = new Tweet();
+        return $tweet->index();
     }
 
-    public function create(Request $request)
+    public function Create(Request $request)
     {
         $tweet = new Tweet();
         $validator = Validator::make(
             $request->all(),
-            $tweet->rules()
+            Tweet::rules(),
         );
         if ($validator->fails()) {
             Log::error($validator->errors(), [
