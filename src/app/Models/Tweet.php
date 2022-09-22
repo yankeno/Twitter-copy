@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Tweet extends Model
 {
@@ -26,24 +28,45 @@ class Tweet extends Model
 
     public function index()
     {
-        $tweets = DB::table('tweets')
-            ->join('users', 'tweets.user_id', 'users.id')
-            ->select('tweets.*', 'users.account', 'users.name', 'users.authorized')
-            ->get();
-        return response()->json([
-            'message' => 'successfull',
-            'tweets' => $tweets,
-        ]);
+        try {
+            $tweets = DB::table('tweets')
+                ->join('users', 'tweets.user_id', 'users.id')
+                ->select('tweets.*', 'users.account', 'users.name', 'users.authorized')
+                ->get();
+            return response()->json([
+                'message' => 'successfull',
+                'tweets' => $tweets,
+            ]);
+        } catch (Exception $e) {
+            Log::error($e);
+            return response()->json([
+                'message' => 'failed'
+            ]);
+        }
     }
 
     public function store(Request $request)
     {
-        $this->tweet = $request->tweet;
-        $this->user_id = $request->userId;
-        $this->user_agent = $request->header('User-Agent');
-        $this->save();
-        return response()->json([
-            'message' => 'successfull'
-        ]);
+        try {
+            DB::beginTransaction();
+            $this->tweet = $request->tweet;
+            $this->user_id = $request->userId;
+            $this->user_agent = $request->header('User-Agent');
+            $this->save();
+            $response = response()->json([
+                'message' => 'successfull'
+            ]);
+            DB::commit();
+            return $response;
+        } catch (Exception $e) {
+            Log::error($e);
+            return response()->json([
+                'message' => 'failed'
+            ]);
+        }
+    }
+
+    public function delete()
+    {
     }
 }

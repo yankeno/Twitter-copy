@@ -15,7 +15,7 @@ class TweetController extends Controller
         return $tweet->index();
     }
 
-    public function Create(Request $request)
+    public function create(Request $request)
     {
         $tweet = new Tweet();
         $validator = Validator::make(
@@ -31,5 +31,9 @@ class TweetController extends Controller
             ]);
         }
         return $tweet->store($request);
+    }
+
+    public function destroy(Request $request)
+    {
     }
 }
