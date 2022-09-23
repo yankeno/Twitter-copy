@@ -35,10 +35,12 @@ const onClickSendTweet = () => {
             return res.json();
         })
         .then((data) => {
-            if (data[0].message === "successfull") {
-                alert("ツイートを送信しました。");
-                tweet.value = "";
+            if (data.message !== "successfull") {
+                alert("ツイートの送信に失敗しました。");
+                return;
             }
+            alert("ツイートを送信しました。");
+            tweet.value = "";
         });
 };
 

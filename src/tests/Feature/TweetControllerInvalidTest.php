@@ -30,12 +30,12 @@ class TweetControllerInvalidTest extends TestCase
         return [
             // tweet 0文字
             [
-                'userId' => 9,
+                'userId' => 1,
                 'tweet' => '',
             ],
             // tweet 141文字
             [
-                'userId' => 9,
+                'userId' => 1,
                 'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJK',
             ],
         ];

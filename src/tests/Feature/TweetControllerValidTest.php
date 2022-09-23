@@ -30,12 +30,12 @@ class TweetControllerValidTest extends TestCase
         return [
             // 正常データ
             [
-                'userId' => 8,
+                'userId' => 1,
                 'tweet' => 'hello',
             ],
             // tweet 140文字
             [
-                'userId' => 8,
+                'userId' => 1,
                 'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ',
             ],
         ];
