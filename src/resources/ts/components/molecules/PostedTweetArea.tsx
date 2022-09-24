@@ -9,7 +9,8 @@ import { LikedIcon } from "../atoms/icons/LikedIcon";
 import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 
 type Props = {
-    id: string;
+    tweetId: string;
+    account: string;
     userName: string;
     isAuthAccount: boolean;
     isLiked: boolean;
@@ -18,9 +19,10 @@ type Props = {
 };
 
 export const PostedTweetArea: FC<Props> = memo((props) => {
-    const { tweet, avatarUrl, isAuthAccount, userName, id } = props;
+    const { tweetId, account, tweet, avatarUrl, isAuthAccount, userName } =
+        props;
     return (
-        <div className="p-2 brder-solid border-b">
+        <div className="p-2 brder-solid border-b" id={tweetId}>
             <div className=" m-0 min-h-24 w-full flex justify-start">
                 <ProfileAvatar url={avatarUrl} />
                 <div className="mx-3">
@@ -30,7 +32,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         </span>
                         <span>{isAuthAccount && <AuthorizedBadgeIcon />}</span>
                         <span className="px-1 text-sm text-gray-400">
-                            @{id}
+                            @{account}
                         </span>
                     </div>
                     <div className="py-2 min-h-16">{tweet}</div>

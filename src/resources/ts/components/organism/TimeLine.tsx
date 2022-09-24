@@ -9,7 +9,8 @@ export const TimeLine: FC = memo(() => {
         <div className="w-[40%]">
             <TweetArea />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"1"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -17,7 +18,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"2"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -25,7 +27,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"3"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -33,7 +36,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"4"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -41,7 +45,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"5"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -49,7 +54,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"6"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -57,7 +63,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"7"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -65,7 +72,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"8"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -73,7 +81,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"9"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -81,7 +90,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"10"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
@@ -89,7 +99,8 @@ export const TimeLine: FC = memo(() => {
                 isLiked={true}
             />
             <PostedTweetArea
-                id="nyanko_star"
+                tweetId={"11"}
+                account="nyanko_star"
                 userName="アンゴラ村長"
                 isAuthAccount={true}
                 avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"

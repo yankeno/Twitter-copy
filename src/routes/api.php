@@ -38,5 +38,6 @@ Route::group([
 ], function () {
     Route::get('/', [TweetController::class, 'index']);
     Route::post('/create', [TweetController::class, 'create']);
-    // Route::delete('/destroy', [TweetController::class, 'destroy']);
+    Route::put('/edit', [TweetController::class, 'edit']);
+    Route::delete('/destroy', [TweetController::class, 'destroy']);
 });
