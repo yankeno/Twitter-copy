@@ -22,9 +22,9 @@ class TweetController extends Controller
         return $this->tweet->store($request);
     }
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
-        return $this-tweet->
+        return $this->tweet->edit($request);
     }
 
     public function destroy(Request $request)
