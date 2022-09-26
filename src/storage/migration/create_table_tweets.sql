@@ -1,3 +1,4 @@
+-- バックアップ用に作成したが、laravel の migration ファイルを作成したため不要になった
 CREATE TABLE `tweets` (
     `id` bigint unsigned NOT NULL AUTO_INCREMENT,
     `user_id` bigint unsigned NOT NULL,

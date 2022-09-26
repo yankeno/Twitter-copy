@@ -9,14 +9,32 @@ use Tests\TestCase;
 class TweetControllerUpdateTweetTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * /tweet/update のバリデーションテスト
      *
      * @return void
      */
-    public function test_example()
+    public function testControllerUpdateTweetValidation(array $keys, array $values, string $message)
     {
-        $response = $this->get('/');
+        $dataList = array_combine($keys, $values);
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+        ])->putJson('/api/tweet/update', [
+            $dataList,
+        ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertJsonFragment(
+            ['message' => $message]
+        );
+    }
+
+    public function validDataProvider()
+    {
+        return [
+            // ツイート更新正常データ
+            [
+                ['tweetId', 'tweet', 'likes', 'retweets', 'replies'],
+                [1, '正常データ']
+            ]
+        ]
     }
 }
