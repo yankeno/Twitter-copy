@@ -16,7 +16,7 @@ class Tweet extends Model
     use HasFactory;
 
     protected $table = 'tweets';
-    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function user()
     {
@@ -136,23 +136,23 @@ class Tweet extends Model
             }
             DB::beginTransaction();
             if (isset($request->tweet)) {
-                $this->tweet = $request->tweet;
+                // $this->tweet = $request->tweet;
                 $this->where('id', $request->tweetId)->update(['tweet' => $request->tweet]);
             }
             if (isset($request->likes)) {
-                $this->likes = $request->likes;
+                // $this->likes = $request->likes;
                 $this->where('id', $request->tweetId)->update(['likes' => $request->likes]);
             }
             if (isset($request->retweets)) {
-                $this->retweets = $request->retweets;
+                // $this->retweets = $request->retweets;
                 $this->where('id', $request->tweetId)->update(['retweets' => $request->retweets]);
             }
             if (isset($request->replies)) {
-                $this->replies = $request->replies;
+                // $this->replies = $request->replies;
                 $this->where('id', $request->tweetId)->update(['replies' => $request->replies]);
             }
             $response = response()->json([
-                'message' => 'successfull'
+                'message' => 'successful'
             ]);
             DB::commit();
             return $response;
