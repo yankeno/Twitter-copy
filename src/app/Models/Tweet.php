@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Exception;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -26,13 +27,11 @@ class Tweet extends Model
     public function index()
     {
         try {
-            $tweets = DB::table('tweets')
-                ->join('users', 'tweets.user_id', 'users.id')
-                ->select('tweets.*', 'users.account', 'users.name', 'users.authorized')
-                ->whereNull('tweets.deleted_at',)
+            $tweets = Tweet::with(['user:id,account,name,authorized'])
+                ->whereNull('deleted_at')
                 ->get();
             return response()->json([
-                'message' => 'successfull',
+                'message' => 'successful',
                 'tweets' => $tweets,
             ]);
         } catch (Exception $e) {
@@ -67,7 +66,7 @@ class Tweet extends Model
             $this->user_agent = $request->header('User-Agent');
             $this->save();
             $response = response()->json([
-                'message' => 'successfull'
+                'message' => 'successful'
             ]);
             DB::commit();
             return $response;
@@ -100,7 +99,7 @@ class Tweet extends Model
             $this->where('id', $request->tweetId)
                 ->update(['deleted_at' => Carbon::now()]);
             $response = response()->json([
-                'message' => 'successfull'
+                'message' => 'successful'
             ]);
             DB::commit();
             return $response;
@@ -136,19 +135,15 @@ class Tweet extends Model
             }
             DB::beginTransaction();
             if (isset($request->tweet)) {
-                // $this->tweet = $request->tweet;
                 $this->where('id', $request->tweetId)->update(['tweet' => $request->tweet]);
             }
             if (isset($request->likes)) {
-                // $this->likes = $request->likes;
                 $this->where('id', $request->tweetId)->update(['likes' => $request->likes]);
             }
             if (isset($request->retweets)) {
-                // $this->retweets = $request->retweets;
                 $this->where('id', $request->tweetId)->update(['retweets' => $request->retweets]);
             }
             if (isset($request->replies)) {
-                // $this->replies = $request->replies;
                 $this->where('id', $request->tweetId)->update(['replies' => $request->replies]);
             }
             $response = response()->json([

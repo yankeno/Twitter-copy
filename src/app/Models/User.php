@@ -15,7 +15,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function tweet()
     {
-        return $this->hasOne('App\Models\Tweet');
+        return $this->hasMany('App\Models\Tweet');
     }
 
     /**

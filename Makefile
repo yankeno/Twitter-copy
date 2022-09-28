@@ -20,6 +20,8 @@ up:
 	sleep 5
 	docker compose exec app php artisan migrate:refresh
 	docker compose exec app php artisan db:seed
+	docker compose exec app php artisan migrate:refresh --env=testing
+	docker compose exec app php artisan db:seed --env=testing
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	cd src && npm run dev && cd ..
 	@make fresh

@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { memo, FC } from "react";
 
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
 import { TweetArea } from "../molecules/TweetArea";
 
+const baseUrl = import.meta.env.VITE_APP_URL;
+
+const async loadTweets = () => {
+    fetch(`${baseUrl}/api/tweet`, {
+        method: "GET",
+    })
+        .then((res) => {
+            if (!res.ok) {
+                alert("ツイートの取得に失敗しました。");
+                return;
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if (data.message !== "successful") {
+                alert("ツイートの取得に失敗しました。");
+                return;
+            }
+            console.log(data.tweets[0].tweet);
+        });
+}
+
 export const TimeLine: FC = memo(() => {
+    useEffect(() => {
+
+    }, []);
     return (
         <div className="w-[40%]">
             <TweetArea />
