@@ -29,6 +29,7 @@ class Tweet extends Model
         try {
             $tweets = Tweet::with(['user:id,account,name,authorized'])
                 ->whereNull('deleted_at')
+                ->latest('created_at')
                 ->get();
             return response()->json([
                 'message' => 'successful',
