@@ -46,7 +46,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         <span className="px-1 text-sm text-gray-400">
                             @{account}
                         </span>
-                        <span>{createdAt.toLocaleString()}</span>
+                        {/* <span>{createdAt.toLocaleString()}</span> */}
                     </div>
                     <div className="py-2 min-h-16">{tweet}</div>
                     <div className="flex justify-start gap-x-32 items-end">
