@@ -15,5 +15,5 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true
     },
-    "include": ["resources/ts/**/*"]
+    "include": ["resources/ts/**/*", "./env.d.ts"]
 }

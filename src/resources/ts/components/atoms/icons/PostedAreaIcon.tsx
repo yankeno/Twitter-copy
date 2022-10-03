@@ -7,7 +7,7 @@ type Props = {
     children: ReactNode;
 };
 
-export const PosteAreaIcon: FC<Props> = memo((props) => {
+export const PostedAreaIcon: FC<Props> = memo((props) => {
     const { children } = props;
     return (
         <IconContext.Provider value={{ size: "16px" }}>

@@ -12,10 +12,10 @@ export const SideMenu: FC = memo(() => {
     return (
         <>
             <aside
-                className="w-96 pl-24 h-screen sticky top-0 inline-block border-r"
+                className="w-[30%] max-w-96 pl-24 h-screen sticky top-0 inline-block border-r"
                 aria-label="Sidemenu"
             >
-                <div className="overflow-y-auto py-2 px-2">
+                <div className="overflow-y-auto py-4 px-4 flex float-right">
                     <ul className="space-y-2">
                         <li>
                             <TwitterIcon />

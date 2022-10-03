@@ -30,7 +30,7 @@ export const TweetArea: FC = memo(() => {
                     <EmojiIcon />
                     <ReserveIcon />
                 </div>
-                <div className="ml-44">
+                <div className="ml-32">
                     <SecondaryTweetButton />
                 </div>
             </div>

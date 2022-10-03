@@ -2,7 +2,7 @@ import React from "react";
 import { memo, FC, useState } from "react";
 
 import { AiFillHeart } from "react-icons/ai";
-import { PosteAreaIcon } from "./PostedAreaIcon";
+import { PostedAreaIcon } from "./PostedAreaIcon";
 
 type Props = {
     isLiked: boolean;
@@ -17,11 +17,11 @@ export const LikedIcon: FC<Props> = memo((props) => {
     };
 
     return (
-        <PosteAreaIcon>
+        <PostedAreaIcon>
             <AiFillHeart
                 color={isOwnLiked ? "#ef4444" : "#9ca3af"}
                 onClick={onClickLiked}
             />
-        </PosteAreaIcon>
+        </PostedAreaIcon>
     );
 });

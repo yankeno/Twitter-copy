@@ -6,12 +6,10 @@ import { TweetArea } from "../molecules/TweetArea";
 import { TweetLoadingSpinner } from "../atoms/spinner/TweetLoadingSpinner";
 import { useFetchTweets } from "../hooks/useFetchTweets";
 
-const baseUrl = import.meta.env.VITE_APP_URL;
-
 export const TimeLine: FC = memo(() => {
     const { tweets, isLoaded } = useFetchTweets();
     return (
-        <div className="w-[40%]">
+        <div className="w-[40%] max-w-[550px]">
             <TweetArea />
             {isLoaded ? (
                 tweets.map((tweet) => {
