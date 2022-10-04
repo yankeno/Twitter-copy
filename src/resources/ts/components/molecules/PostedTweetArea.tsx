@@ -1,13 +1,17 @@
 import React from "react";
 import { memo, FC } from "react";
 
-import { AuthorizedBadgeIcon } from "../atoms/icons/AuthorizedBadgeIcon";
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 
+import { AuthorizedBadgeIcon } from "../atoms/icons/AuthorizedBadgeIcon";
 import { ProfileAvatar } from "../atoms/picture/ProfileAvatar";
 import { ReplyIcon } from "../atoms/icons/ReplyIcon";
 import { LikedIcon } from "../atoms/icons/LikedIcon";
 import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
+import { useDeleteTweet } from "../hooks/useDeleteTweet";
 
 type Props = {
     tweetId: number;
@@ -34,6 +38,9 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         isLiked,
         createdAt,
     } = props;
+
+    const deleteTweet = useDeleteTweet;
+
     return (
         <div
             className="m-0 flex justify-start p-2 brder-solid border-b"
@@ -49,14 +56,30 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                     </span>
                     {/* <span>{createdAt.toLocaleString()}</span> */}
                     <span className="ml-auto">
-                        <TweetEditIcon />
+                        <Menu
+                            menuButton={
+                                <MenuButton>
+                                    <TweetEditIcon />
+                                </MenuButton>
+                            }
+                            transition
+                        >
+                            <MenuItem>編集</MenuItem>
+                            <MenuItem onClick={deleteTweet(tweetId)}>
+                                削除
+                            </MenuItem>
+                        </Menu>
                     </span>
                 </div>
                 <div className="py-2 min-h-16">{tweet}</div>
-                <div className="flex justify-start gap-x-32 items-end">
-                    <ReplyIcon />
+                <div className="flex gap-x-32">
+                    <div className="flex">
+                        <ReplyIcon />
+                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                    </div>
+
                     <LikedIcon isLiked={isLiked} />
-                    <RetweetIcon isRetweeted={false} />
+                    <RetweetIcon isRetweeted={true} />
                 </div>
             </div>
         </div>
