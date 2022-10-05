@@ -1,5 +1,5 @@
 import React from "react";
-import { memo, FC } from "react";
+import { memo, FC, useState } from "react";
 
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
@@ -12,6 +12,7 @@ import { LikedIcon } from "../atoms/icons/LikedIcon";
 import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
 import { useDeleteTweet } from "../hooks/useDeleteTweet";
+import { TweetDeleteModal } from "./TweetDeleteModal";
 
 type Props = {
     tweetId: number;
@@ -39,7 +40,14 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         createdAt,
     } = props;
 
-    const deleteTweet = useDeleteTweet;
+    const [showModal, setShowModal] = useState<boolean>(false);
+    // const deleteTweet = useDeleteTweet;
+    const onOpenModal = () => {
+        setShowModal(true);
+    };
+    const onCloseModal = () => {
+        setShowModal(false);
+    };
 
     return (
         <div
@@ -65,9 +73,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                             transition
                         >
                             <MenuItem>編集</MenuItem>
-                            <MenuItem onClick={deleteTweet(tweetId)}>
-                                削除
-                            </MenuItem>
+                            <MenuItem onClick={onOpenModal}>削除</MenuItem>
                         </Menu>
                     </span>
                 </div>
@@ -82,6 +88,9 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                     <RetweetIcon isRetweeted={true} />
                 </div>
             </div>
+            {showModal ? (
+                <TweetDeleteModal tweetId={tweetId} onClose={onCloseModal} />
+            ) : null}
         </div>
     );
 });
