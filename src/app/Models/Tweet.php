@@ -27,7 +27,7 @@ class Tweet extends Model
     public function index()
     {
         try {
-            $tweets = Tweet::with(['user:id,account,name,authorized'])
+            $tweets = Tweet::with(['user:id,account,name,authorized,avatar_url'])
                 ->whereNull('deleted_at')
                 ->latest('created_at')
                 ->get();

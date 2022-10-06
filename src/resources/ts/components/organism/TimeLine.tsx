@@ -20,7 +20,7 @@ export const TimeLine: FC = memo(() => {
                             account={tweet.user.account}
                             userName={tweet.user.name}
                             isAuthAccount={tweet.user.authorized}
-                            avatarUrl="https://pbs.twimg.com/profile_images/1065277773625810946/0kLo6Xb5_x96.jpg"
+                            avatarUrl={tweet.user.avatar_url}
                             tweet={tweet.tweet}
                             isLiked={false}
                             likes={tweet.likes}

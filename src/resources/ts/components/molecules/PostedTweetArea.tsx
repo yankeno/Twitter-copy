@@ -11,8 +11,8 @@ import { ReplyIcon } from "../atoms/icons/ReplyIcon";
 import { LikedIcon } from "../atoms/icons/LikedIcon";
 import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
-import { useDeleteTweet } from "../hooks/useDeleteTweet";
 import { TweetDeleteModal } from "./TweetDeleteModal";
+import { TweetEditModal } from "./TweetEditModal";
 
 type Props = {
     tweetId: number;
@@ -40,13 +40,19 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         createdAt,
     } = props;
 
-    const [showModal, setShowModal] = useState<boolean>(false);
-    // const deleteTweet = useDeleteTweet;
-    const onOpenModal = () => {
-        setShowModal(true);
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [showEditModal, setShowEditModal] = useState<boolean>(false);
+    const onOpenDeleteModal = () => {
+        setShowDeleteModal(true);
     };
-    const onCloseModal = () => {
-        setShowModal(false);
+    const onCloseDeleteModal = () => {
+        setShowDeleteModal(false);
+    };
+    const onOpenEditModal = () => {
+        setShowEditModal(true);
+    };
+    const onCloseEditModal = () => {
+        setShowEditModal(false);
     };
 
     return (
@@ -72,24 +78,41 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                             }
                             transition
                         >
-                            <MenuItem>編集</MenuItem>
-                            <MenuItem onClick={onOpenModal}>削除</MenuItem>
+                            <MenuItem onClick={onOpenEditModal}>編集</MenuItem>
+                            <MenuItem onClick={onOpenDeleteModal}>
+                                削除
+                            </MenuItem>
                         </Menu>
                     </span>
                 </div>
                 <div className="py-2 min-h-16">{tweet}</div>
-                <div className="flex gap-x-32">
-                    <div className="flex">
+                <div className="flex md:gap-x-32 items-center">
+                    <div className="flex items-center">
                         <ReplyIcon />
                         <div className="text-[#9ca3af] text-sm">{10}</div>
                     </div>
-
-                    <LikedIcon isLiked={isLiked} />
-                    <RetweetIcon isRetweeted={true} />
+                    <div className="flex items-center">
+                        <LikedIcon isLiked={isLiked} />
+                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                    </div>
+                    <div className="flex items-center">
+                        <RetweetIcon isRetweeted={true} />
+                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                    </div>
                 </div>
             </div>
-            {showModal ? (
-                <TweetDeleteModal tweetId={tweetId} onClose={onCloseModal} />
+            {showDeleteModal ? (
+                <TweetDeleteModal
+                    tweetId={tweetId}
+                    onClose={onCloseDeleteModal}
+                />
+            ) : null}
+            {showEditModal ? (
+                <TweetEditModal
+                    tweetId={tweetId}
+                    tweet={tweet}
+                    onClose={onCloseEditModal}
+                />
             ) : null}
         </div>
     );

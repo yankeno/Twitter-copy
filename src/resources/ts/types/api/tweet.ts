@@ -14,5 +14,6 @@ export type Tweet = {
         name: string;
         account: string;
         authorized: boolean;
+        avatar_url: string;
     };
 };
