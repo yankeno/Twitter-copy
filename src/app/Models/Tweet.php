@@ -131,7 +131,7 @@ class Tweet extends Model
                     'request' => $request->all(),
                 ]);
                 return response()->json([
-                    'message' => 'failed'
+                    'message' => $validator->errors()
                 ]);
             }
             DB::beginTransaction();

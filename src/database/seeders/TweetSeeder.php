@@ -16,6 +16,6 @@ class TweetSeeder extends Seeder
      */
     public function run()
     {
-        Tweet::factory()->count(50)->create();
+        Tweet::factory()->count(500)->create();
     }
 }

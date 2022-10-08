@@ -28,6 +28,26 @@ type Props = {
     createdAt: Date;
 };
 
+const tweetNumFmt = (num: number): string => {
+    let retNum: number = num;
+    if (num >= 1000000000000) {
+        return "999.9B+";
+    }
+    if (num >= 1000000000) {
+        retNum = Math.floor(num / 100000000) / 10;
+        return retNum + "B";
+    }
+    if (num >= 1000000) {
+        retNum = Math.floor(num / 100000) / 10;
+        return retNum + "M";
+    }
+    if (num >= 1000) {
+        retNum = Math.floor(num / 100) / 10;
+        return retNum + "k";
+    }
+    return retNum.toLocaleString();
+};
+
 export const PostedTweetArea: FC<Props> = memo((props) => {
     const {
         tweetId,
@@ -37,6 +57,9 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         isAuthAccount,
         userName,
         isLiked,
+        likes,
+        retweets,
+        replies,
         createdAt,
     } = props;
 
@@ -86,18 +109,24 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                     </span>
                 </div>
                 <div className="py-2 min-h-16">{tweet}</div>
-                <div className="flex md:gap-x-32 items-center">
+                <div className="flex grid grid-cols-3 md:gap-x-16 items-center">
                     <div className="flex items-center">
                         <ReplyIcon />
-                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                        <div className="text-[#9ca3af] text-sm">
+                            {tweetNumFmt(replies)}
+                        </div>
                     </div>
                     <div className="flex items-center">
                         <LikedIcon isLiked={isLiked} />
-                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                        <div className="text-[#9ca3af] text-sm">
+                            {tweetNumFmt(likes)}
+                        </div>
                     </div>
                     <div className="flex items-center">
                         <RetweetIcon isRetweeted={true} />
-                        <div className="text-[#9ca3af] text-sm">{10}</div>
+                        <div className="text-[#9ca3af] text-sm">
+                            {tweetNumFmt(retweets)}
+                        </div>
                     </div>
                 </div>
             </div>

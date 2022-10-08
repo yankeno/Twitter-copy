@@ -36,6 +36,15 @@ export const useEditTweet = (
                     alert("ツイートの更新に失敗しました。");
                     return;
                 }
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+
+                if (data.message !== "successful") {
+                    alert(data.message.tweet);
+                    return;
+                }
             })
             .finally(() => {
                 setIsLoaded(false);

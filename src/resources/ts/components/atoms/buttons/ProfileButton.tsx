@@ -3,11 +3,16 @@ import { memo, FC } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { PrimaryButton } from "./PrimaryButton";
+import { useNavigate } from "react-router-dom";
 
-const onClickAlert = () => alert("profile button");
 export const ProfileButton: FC = memo(() => {
+    const navigate = useNavigate();
+    const onClickProfile = () => {
+        navigate("/profile");
+    };
+
     return (
-        <PrimaryButton onClick={onClickAlert}>
+        <PrimaryButton onClick={onClickProfile}>
             <IconContext.Provider value={{ size: "28px" }}>
                 <BsPersonCircle />
                 <span className="mx-4">プロフィール</span>
