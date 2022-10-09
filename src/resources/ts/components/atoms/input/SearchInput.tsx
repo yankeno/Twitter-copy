@@ -11,7 +11,7 @@ export const SearchInput: FC = memo(() => {
                 >
                     Search
                 </label>
-                <div className="relative w-96">
+                <div className="relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                         <svg
                             aria-hidden="true"

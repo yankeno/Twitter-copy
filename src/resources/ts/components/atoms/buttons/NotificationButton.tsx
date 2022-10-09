@@ -13,7 +13,11 @@ export const NotificationButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickNotification}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <BiBell />
+                <BiBell
+                    className={
+                        location.pathname === "/notification" ? "stroke-1" : ""
+                    }
+                />
                 <span className="mx-4">通知</span>
             </IconContext.Provider>
         </PrimaryButton>

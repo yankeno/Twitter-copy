@@ -14,7 +14,7 @@ export const ProfileButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickProfile}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <BsPersonCircle />
+                <BsPersonCircle className={location.pathname === "/profile" ? "stroke-1" : ""} />
                 <span className="mx-4">プロフィール</span>
             </IconContext.Provider>
         </PrimaryButton>

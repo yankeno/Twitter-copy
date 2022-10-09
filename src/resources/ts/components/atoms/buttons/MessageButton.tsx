@@ -13,7 +13,11 @@ export const MessageButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickMesasge}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <AiOutlineMail />
+                <AiOutlineMail
+                    className={
+                        location.pathname === "/message" ? "stroke-1" : ""
+                    }
+                />
                 <span className="mx-4">メッセージ</span>
             </IconContext.Provider>
         </PrimaryButton>

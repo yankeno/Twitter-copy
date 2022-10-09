@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { memo, FC, ChangeEvent } from "react";
+import { usePostTweet } from "../../hooks/usePostTweet";
 
 type Props = {
     placeholder: string;
@@ -7,6 +8,12 @@ type Props = {
 
 export const TweetTextArea: FC<Props> = memo((props) => {
     const { placeholder } = props;
+    const onClickSendTweet = usePostTweet();
+    const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+            onClickSendTweet();
+        }
+    };
 
     /**
      * state はコンポーネント内で定義する!!!!!
@@ -22,6 +29,7 @@ export const TweetTextArea: FC<Props> = memo((props) => {
             className="textarea w-[500px] h-24 px-2 py-2 text-lg outline-none resize-none overscroll-none"
             placeholder={placeholder}
             onChange={onChangeText}
+            onKeyDown={onKeyDownSendTweet}
             id="tweetArea"
         ></textarea>
     );

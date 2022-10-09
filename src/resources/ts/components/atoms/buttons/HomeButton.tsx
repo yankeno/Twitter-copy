@@ -13,7 +13,9 @@ export const HomeButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickHome}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <HiHome />
+                <HiHome
+                    className={location.pathname === "/home" ? "stroke-1" : ""}
+                />
                 <span className="mx-4">ホーム</span>
             </IconContext.Provider>
         </PrimaryButton>
