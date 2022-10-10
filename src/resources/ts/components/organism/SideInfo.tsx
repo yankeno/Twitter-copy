@@ -7,7 +7,7 @@ export const SideInfo: FC = memo(() => {
     return (
         <>
             <aside
-                className="w-[30%] h-screen sticky top-0 inline-block border-l px-4"
+                className="w-[30%] max-w-3xl h-screen sticky top-0 inline-block border-l px-4 mx-0  flex-grow"
                 aria-label="Sidemenu"
             >
                 <div className="max-w-sm">

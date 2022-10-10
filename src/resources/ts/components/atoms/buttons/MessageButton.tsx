@@ -1,6 +1,6 @@
 import React from "react";
 import { memo, FC } from "react";
-import { AiOutlineMail } from "react-icons/ai";
+import { IoMailOutline } from "react-icons/io5";
 import { PrimaryButton } from "./PrimaryButton";
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export const MessageButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickMesasge}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <AiOutlineMail
+                <IoMailOutline
                     className={
                         location.pathname === "/message" ? "stroke-1" : ""
                     }

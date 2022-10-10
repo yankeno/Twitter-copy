@@ -25,12 +25,14 @@ export const TweetTextArea: FC<Props> = memo((props) => {
     };
 
     return (
-        <textarea
-            className="textarea w-[500px] h-24 px-2 py-2 text-lg outline-none resize-none overscroll-none"
-            placeholder={placeholder}
-            onChange={onChangeText}
-            onKeyDown={onKeyDownSendTweet}
-            id="tweetArea"
-        ></textarea>
+        <>
+            <textarea
+                className="textarea w-[500px] h-24 px-2 py-2 text-lg outline-none resize-none overscroll-none"
+                placeholder={placeholder}
+                onChange={onChangeText}
+                onKeyDown={onKeyDownSendTweet}
+                id="tweetArea"
+            ></textarea>
+        </>
     );
 });

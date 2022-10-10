@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TweetLoadContext } from "../providers/TweetLoadProvider";
+import { toast } from "react-hot-toast";
 
 const baseUrl = import.meta.env.VITE_APP_URL;
 const headers = {
@@ -24,29 +25,36 @@ export const usePostTweet = () => {
             tweet: tweet.value,
         };
 
-        fetch(`${baseUrl}/api/tweet/create`, {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(data),
-        })
-            .then((res) => {
-                if (!res.ok) {
-                    alert("ツイートの送信に失敗しました。");
-                    return;
-                }
-                return res.json();
+        toast.promise(
+            fetch(`${baseUrl}/api/tweet/create`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data),
             })
-            .then((data) => {
-                if (data.message !== "successful") {
-                    alert("ツイートの送信に失敗しました。");
-                    return;
-                }
-                alert("ツイートを送信しました。");
-                tweet.value = "";
-            })
-            .then(() => {
-                setIsLoaded(false);
-            });
+                .then((res) => {
+                    if (!res.ok) {
+                        return;
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    if (data.message !== "successful") {
+                        return;
+                    }
+                    tweet.value = "";
+                })
+                .then(() => {
+                    setIsLoaded(false);
+                }),
+            {
+                loading: "送信中...",
+                success: "ツイートを送信しました。",
+                error: "ツイートの送信に失敗しました。",
+            },
+            {
+                position: "bottom-center",
+            }
+        );
     };
     return onClickSendTweet;
 };

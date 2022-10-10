@@ -5,13 +5,13 @@ import { PostedTweetArea } from "../molecules/PostedTweetArea";
 import { TweetArea } from "../molecules/TweetArea";
 import { TweetLoadingSpinner } from "../atoms/spinner/TweetLoadingSpinner";
 import { useFetchTweets } from "../hooks/useFetchTweets";
+import { Toaster } from "react-hot-toast";
 
 export const TimeLine: FC = memo(() => {
     const { tweets, isLoaded } = useFetchTweets();
     return (
         <>
-            {/* {" "} */}
-            <div className="w-[40%] max-w-[550px]">
+            <div className="w-[40%] max-w-[600px] mx-0  flex-grow">
                 <TweetArea />
                 {isLoaded ? (
                     tweets.map((tweet) => {
@@ -38,6 +38,7 @@ export const TimeLine: FC = memo(() => {
                     </div>
                 )}
             </div>
+            <Toaster />
         </>
     );
 });

@@ -88,7 +88,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                 <div className="flex justify-start inline items-center">
                     <span className="text-gray-700 font-bold">{userName}</span>
                     <span>{isAuthAccount && <AuthorizedBadgeIcon />}</span>
-                    <span className="px-1 text-sm text-gray-400">
+                    <span className="mx-1 text-sm text-gray-400">
                         @{account}
                     </span>
                     {/* <span>{createdAt.toLocaleString()}</span> */}

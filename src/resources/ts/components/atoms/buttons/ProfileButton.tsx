@@ -1,6 +1,6 @@
 import React from "react";
 import { memo, FC } from "react";
-import { BsPersonCircle } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { PrimaryButton } from "./PrimaryButton";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,11 @@ export const ProfileButton: FC = memo(() => {
     return (
         <PrimaryButton onClick={onClickProfile}>
             <IconContext.Provider value={{ size: "28px" }}>
-                <BsPersonCircle className={location.pathname === "/profile" ? "stroke-1" : ""} />
+                <BsFillPersonFill
+                    className={
+                        location.pathname === "/profile" ? "stroke-1" : ""
+                    }
+                />
                 <span className="mx-4">プロフィール</span>
             </IconContext.Provider>
         </PrimaryButton>

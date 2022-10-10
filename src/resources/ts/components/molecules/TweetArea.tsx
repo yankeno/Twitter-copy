@@ -12,28 +12,30 @@ import { SecondaryTweetButton } from "../atoms/buttons/SecondaryTweetButton";
 
 export const TweetArea: FC = memo(() => {
     return (
-        <div className="h-44 border-solid border-b">
-            <div className="flex justify-start">
-                <div className="h-24 w-14 m-4">
-                    <ProfileAvatar url="img/avatar/generated_photos_5e6844246d3b380006e28371.jpeg" />
+        <>
+            <div className="h-44 border-solid border-b">
+                <div className="flex justify-start">
+                    <div className="h-24 w-14 m-4">
+                        <ProfileAvatar url="img/avatar/generated_photos_5e6844246d3b380006e28371.jpeg" />
+                    </div>
+                    <div className="ml-2 mt-4">
+                        <TweetTextArea placeholder="いまどうしてる？" />
+                    </div>
                 </div>
-                <div className="ml-2 mt-4">
-                    <TweetTextArea placeholder="いまどうしてる？" />
-                </div>
-            </div>
 
-            <div className="flex items-start">
-                <div className="grid grid-cols-5 w-48 ml-24">
-                    <PictureIcon />
-                    <GifIcon />
-                    <VoteIcon />
-                    <EmojiIcon />
-                    <ReserveIcon />
-                </div>
-                <div className="ml-[25%]">
-                    <SecondaryTweetButton />
+                <div className="flex items-start">
+                    <div className="grid grid-cols-5 w-48 ml-24">
+                        <PictureIcon />
+                        <GifIcon />
+                        <VoteIcon />
+                        <EmojiIcon />
+                        <ReserveIcon />
+                    </div>
+                    <div className="ml-[25%]">
+                        <SecondaryTweetButton />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 });
