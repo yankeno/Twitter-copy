@@ -30,7 +30,7 @@ class Tweet extends Model
             $tweets = Tweet::with(['user:id,account,name,authorized,avatar_url'])
                 ->whereNull('deleted_at')
                 ->latest('created_at')
-                ->get();
+                ->paginate();
             return response()->json([
                 'message' => 'successful',
                 'tweets' => $tweets,
