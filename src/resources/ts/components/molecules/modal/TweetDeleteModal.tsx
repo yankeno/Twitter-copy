@@ -1,6 +1,6 @@
 import React from "react";
 import { memo, FC } from "react";
-import { useDeleteTweet } from "../hooks/useDeleteTweet";
+import { useDeleteTweet } from "../../hooks/useDeleteTweet";
 
 type Props = {
     tweetId: number;

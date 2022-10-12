@@ -1,16 +1,8 @@
 import React, { ChangeEvent } from "react";
 import { memo, FC, useState } from "react";
-import { useEditTweet } from "../hooks/useEditTweet";
 
-type Props = {
-    tweetId: number;
-    tweet: string;
-    onClose: () => void;
-};
-
-export const TweetEditModal: FC<Props> = memo((props) => {
-    const { tweetId, tweet, onClose } = props;
-    const [text, setText] = useState<string>(tweet);
+export const TweetPostModal: FC = memo(() => {
+    const [text, setText] = useState<string>("");
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };

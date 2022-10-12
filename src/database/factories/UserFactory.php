@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'authorized' => rand(0, 1),
-            'avatar_url' => 'https://placehold.jp/150x150.png',
+            'avatar_url' => 'img/avatar/generated_photos_5e6887c46d3b380006f1daa1.jpeg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

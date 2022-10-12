@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { TweetLoadContext } from "../providers/TweetLoadProvider";
 import { toast } from "react-hot-toast";
 
 const baseUrl = import.meta.env.VITE_APP_URL;
@@ -8,7 +6,6 @@ const headers = {
 };
 
 export const usePostTweet = () => {
-    const { setIsLoaded } = useContext(TweetLoadContext);
     const onClickSendTweet = () => {
         const tweet = document.getElementById("tweetArea") as HTMLInputElement;
         if (tweet.value.length > 140) {
@@ -41,10 +38,7 @@ export const usePostTweet = () => {
                     if (data.message !== "successful") {
                         return;
                     }
-                    tweet.value = "";
-                })
-                .then(() => {
-                    setIsLoaded(false);
+                    window.location.reload();
                 }),
             {
                 loading: "送信中...",

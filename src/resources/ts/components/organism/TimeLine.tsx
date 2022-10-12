@@ -1,5 +1,5 @@
 import React from "react";
-import { memo, FC, useState } from "react";
+import { memo, FC } from "react";
 
 /**
  * 型定義ファイルを別途インストールする必要があるパッケージが存在する。
@@ -14,8 +14,7 @@ import { useFetchTweets } from "../hooks/useFetchTweets";
 import { Toaster } from "react-hot-toast";
 
 export const TimeLine: FC = memo(() => {
-    // const [tweets, setTweets] = useState<Array<JSX.Element>>([]);
-    const { tweets, hasMore, isLoaded, fetchTweets } = useFetchTweets();
+    const { tweets, hasMore, fetchTweets } = useFetchTweets();
     const loading = (
         <div className="flex justify-center my-2">
             <TweetLoadingSpinner key={0} />
@@ -25,10 +24,9 @@ export const TimeLine: FC = memo(() => {
         <>
             <div className="w-[40%] max-w-[600px] mx-0  flex-grow">
                 <TweetArea />
-                {/* {isLoaded ? tweets : loading} */}
                 <InfiniteScroll
                     loadMore={fetchTweets}
-                    hasMore={isLoaded && hasMore}
+                    hasMore={hasMore}
                     loader={loading}
                 >
                     {tweets}

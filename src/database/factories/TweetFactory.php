@@ -23,6 +23,8 @@ class TweetFactory extends Factory
             'retweets' => $this->faker->randomNumber(),
             'replies' => $this->faker->randomNumber(),
             'user_agent' => $this->faker->userAgent(),
+            'created_at' => $this->faker->dateTimeBetween($startDate = '-2 week', $endDate = '-1 week'),
+            'updated_at' => $this->faker->dateTimeBetween($startDate = '-1 week', $endDate = 'now'),
         ];
     }
 }

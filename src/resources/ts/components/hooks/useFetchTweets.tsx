@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tweet } from "../../types/api/tweet";
-import { TweetLoadContext } from "../providers/TweetLoadProvider";
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
-import { useState } from "react";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 let list: Array<JSX.Element>;
 let query: string;
 
 export const useFetchTweets = () => {
-    const { isLoaded, setIsLoaded } = useContext(TweetLoadContext);
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [nextPage, setNextPage] = useState<number>(1);
     const [tweets, setTweets] = useState<Array<JSX.Element>>([]);
@@ -17,6 +14,7 @@ export const useFetchTweets = () => {
     const fetchTweets = () => {
         if (!hasMore) return;
         query = "?page=" + nextPage;
+
         fetch(`${baseUrl}/api/tweet${query}`, {
             method: "GET",
         })
@@ -36,8 +34,6 @@ export const useFetchTweets = () => {
                     ? setHasMore(false)
                     : setNextPage(data.tweets.current_page + 1);
                 list = data.tweets.data.map((tweet: Tweet) => {
-                    console.log(tweet.id);
-
                     return (
                         <PostedTweetArea
                             key={tweet.id}
@@ -56,15 +52,7 @@ export const useFetchTweets = () => {
                     );
                 });
                 setTweets([...tweets, ...list]);
-            })
-            .finally(() => {
-                setIsLoaded(true);
             });
     };
-
-    useEffect(() => {
-        fetchTweets();
-    }, [isLoaded]);
-
-    return { tweets, hasMore, isLoaded, fetchTweets };
+    return { tweets, hasMore, fetchTweets };
 };

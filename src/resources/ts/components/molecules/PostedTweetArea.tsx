@@ -11,8 +11,8 @@ import { ReplyIcon } from "../atoms/icons/ReplyIcon";
 import { LikedIcon } from "../atoms/icons/LikedIcon";
 import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
-import { TweetDeleteModal } from "./TweetDeleteModal";
-import { TweetEditModal } from "./TweetEditModal";
+import { TweetDeleteModal } from "./modal/TweetDeleteModal";
+import { TweetEditModal } from "./modal/TweetEditModal";
 
 type Props = {
     tweetId: number;
@@ -108,7 +108,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         </Menu>
                     </span>
                 </div>
-                <div className="py-2 min-h-16">{tweet}</div>
+                <div className="py-2 min-h-16 text-gray-800">{tweet}</div>
                 <div className="flex grid grid-cols-3 md:gap-x-16 items-center">
                     <div className="flex items-center">
                         <ReplyIcon />
