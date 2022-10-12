@@ -1,24 +1,23 @@
 import { toast } from "react-hot-toast";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
-export const useEditTweet = (
-    tweetId: number,
-    tweet?: string,
-    likes?: number,
-    retweets?: number,
-    replies?: number
-) => {
-    const param: string | null = tweet
-        ? `tweet=${tweet}`
-        : likes
-        ? `likes=${likes}`
-        : retweets
-        ? `retweets=${retweets}`
-        : replies
-        ? `replies=${replies}`
-        : null;
-
-    const editTweet = () => {
+export const useEditTweet = () => {
+    const editTweet = (
+        tweetId: number,
+        tweet?: string,
+        likes?: number,
+        retweets?: number,
+        replies?: number
+    ) => {
+        const param: string | null = tweet
+            ? `tweet=${tweet}`
+            : likes
+            ? `likes=${likes}`
+            : retweets
+            ? `retweets=${retweets}`
+            : replies
+            ? `replies=${replies}`
+            : null;
         toast.promise(
             fetch(
                 `${baseUrl}/api/tweet/update?tweetId=${tweetId}` + `&${param}`,

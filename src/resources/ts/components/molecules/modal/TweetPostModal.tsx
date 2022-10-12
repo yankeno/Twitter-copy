@@ -1,10 +1,25 @@
 import React, { ChangeEvent } from "react";
 import { memo, FC, useState } from "react";
+import { usePostTweet } from "../../hooks/usePostTweet";
 
-export const TweetPostModal: FC = memo(() => {
+type Props = {
+    onClose: () => void;
+};
+
+export const TweetPostModal: FC<Props> = memo((props) => {
+    const { onClose } = props;
     const [text, setText] = useState<string>("");
+    const postTweet = usePostTweet();
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
+    };
+    const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+            postTweet("modalTweetArea");
+        }
+    };
+    const onClickSendTweet = () => {
+        postTweet("modalTweetArea");
     };
     return (
         <>
@@ -15,14 +30,17 @@ export const TweetPostModal: FC = memo(() => {
                         {/*header*/}
                         <div className="flex items-start justify-between px-4 my-4 rounded-t">
                             <h3 className="text-xl text-gray-600 font-semibold">
-                                ツイートを編集する
+                                ツイートを送信する
                             </h3>
                         </div>
                         {/*body*/}
                         <div className="flex flex-col justify-center relative px-6 w-full h-48">
                             <textarea
                                 className="textarea h-full my-2 p-2 rounded-sm text-md outline-slate-400 border border-slate-300 resize-none"
+                                id="modalTweetArea"
                                 onChange={onChangeText}
+                                onKeyDown={onKeyDownSendTweet}
+                                placeholder="いまどうしてる？"
                                 value={text}
                             ></textarea>
                         </div>
@@ -31,9 +49,9 @@ export const TweetPostModal: FC = memo(() => {
                             <button
                                 className="bg-blue-400 w-[80%] text-white active:bg-blue-600 font-bold uppercase text-md px-6 py-3 rounded-full shadow hover:shadow-lg mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button"
-                                onClick={useEditTweet(tweetId, text)}
+                                onClick={onClickSendTweet}
                             >
-                                確定
+                                送信
                             </button>
                             <button
                                 className="w-[80%] outline outline-slate-400 outline-1 text-gray-600 font-bold uppercase px-6 py-3 rounded-full shadow hover:shadow-lg text-md mr-1 mb-1 ease-linear transition-all duration-150"

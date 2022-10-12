@@ -8,10 +8,10 @@ type Props = {
 
 export const TweetTextArea: FC<Props> = memo((props) => {
     const { placeholder } = props;
-    const onClickSendTweet = usePostTweet();
+    const postTweet = usePostTweet();
     const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
-            onClickSendTweet();
+            postTweet("tweetArea");
         }
     };
 

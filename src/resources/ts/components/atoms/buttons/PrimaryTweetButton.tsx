@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { memo, FC } from "react";
 import { SecondaryButton } from "./SecondaruButton";
+import { TweetPostModal } from "../../molecules/modal/TweetPostModal";
 
-const onClickAlert = () => alert("tweet button");
 export const PrimaryTweetButton: FC = memo(() => {
+    const [showTweetModal, setShowTweetModal] = useState<boolean>(false);
+    const onOpenTweetModal = () => {
+        setShowTweetModal(true);
+    };
+    const onCloseTeetModal = () => {
+        setShowTweetModal(false);
+    };
     return (
-        <SecondaryButton onClick={onClickAlert}>
-            <p>ツイートする</p>
-        </SecondaryButton>
+        <>
+            <SecondaryButton onClick={onOpenTweetModal}>
+                <p>ツイートする</p>
+            </SecondaryButton>
+            {showTweetModal ? (
+                <TweetPostModal onClose={onCloseTeetModal} />
+            ) : null}
+        </>
     );
 });

@@ -6,14 +6,14 @@ const headers = {
 };
 
 export const usePostTweet = () => {
-    const onClickSendTweet = () => {
-        const tweet = document.getElementById("tweetArea") as HTMLInputElement;
+    const onClickSendTweet = (elemId: string): void => {
+        const tweet = document.getElementById(elemId) as HTMLInputElement;
         if (tweet.value.length > 140) {
-            alert("ツイートは140以内で入力してください。");
+            toast.error("ツイートは140以内で入力してください。");
             return;
         }
         if (tweet.value.length <= 0) {
-            alert("ツイート内容を入力してください。");
+            toast.error("ツイート内容を入力してください。");
             return;
         }
 

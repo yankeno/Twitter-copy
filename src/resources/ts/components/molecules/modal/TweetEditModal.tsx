@@ -11,8 +11,18 @@ type Props = {
 export const TweetEditModal: FC<Props> = memo((props) => {
     const { tweetId, tweet, onClose } = props;
     const [text, setText] = useState<string>(tweet);
+    const editTweet = useEditTweet();
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
+    };
+    const onClickEditTweet = () => {
+        editTweet(tweetId, text);
+    };
+    const onKeyDownEditTweet = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+            console.log("コマンド＋エンター！！");
+            editTweet(tweetId, text);
+        }
     };
     return (
         <>
@@ -31,6 +41,7 @@ export const TweetEditModal: FC<Props> = memo((props) => {
                             <textarea
                                 className="textarea h-full my-2 p-2 rounded-sm text-md outline-slate-400 border border-slate-300 resize-none"
                                 onChange={onChangeText}
+                                onKeyDown={onKeyDownEditTweet}
                                 value={text}
                             ></textarea>
                         </div>
@@ -39,7 +50,7 @@ export const TweetEditModal: FC<Props> = memo((props) => {
                             <button
                                 className="bg-blue-400 w-[80%] text-white active:bg-blue-600 font-bold uppercase text-md px-6 py-3 rounded-full shadow hover:shadow-lg mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button"
-                                onClick={useEditTweet(tweetId, text)}
+                                onClick={onClickEditTweet}
                             >
                                 確定
                             </button>

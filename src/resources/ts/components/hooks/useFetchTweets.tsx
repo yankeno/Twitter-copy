@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Tweet } from "../../types/api/tweet";
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
+import { toast } from "react-hot-toast";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 let list: Array<JSX.Element>;
@@ -20,14 +21,14 @@ export const useFetchTweets = () => {
         })
             .then((res) => {
                 if (!res.ok) {
-                    alert("ツイートの取得に失敗しました。");
+                    toast.error("ツイートの取得に失敗しました。");
                     return;
                 }
                 return res.json();
             })
             .then((data) => {
                 if (data.message !== "successful") {
-                    alert("ツイートの取得に失敗しました。");
+                    toast.error("ツイートの取得に失敗しました。");
                     return;
                 }
                 data.tweets.next_page_url === null
