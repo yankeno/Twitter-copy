@@ -108,7 +108,9 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         </Menu>
                     </span>
                 </div>
-                <div className="py-2 min-h-16 text-gray-800">{tweet}</div>
+                <div className="py-2 min-h-16 text-gray-800 whitespace-pre-wrap">
+                    {tweet}
+                </div>
                 <div className="flex grid grid-cols-3 md:gap-x-16 items-center">
                     <div className="flex items-center">
                         <ReplyIcon />

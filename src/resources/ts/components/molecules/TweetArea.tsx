@@ -16,7 +16,7 @@ export const TweetArea: FC = memo(() => {
             <div className="h-44 border-solid border-b">
                 <div className="flex justify-start">
                     <div className="h-24 w-14 m-4">
-                        <ProfileAvatar url="img/avatar/generated_photos_5e6844246d3b380006e28371.jpeg" />
+                        <ProfileAvatar url="storage/img/avatar/100.jpg" />
                     </div>
                     <div className="ml-2 mt-4">
                         <TweetTextArea placeholder="いまどうしてる？" />
