@@ -16,7 +16,7 @@ import { Toaster } from "react-hot-toast";
 export const TimeLine: FC = memo(() => {
     const { tweets, hasMore, fetchTweets } = useFetchTweets();
     const loading = (
-        <div className="flex justify-center my-2">
+        <div className="flex justify-center my-8">
             <TweetLoadingSpinner key={0} />
         </div>
     );
