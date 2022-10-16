@@ -194,12 +194,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /**
-         * JWT Authentication
-         */
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
     ],
 
     /*

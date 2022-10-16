@@ -6,8 +6,7 @@ import { useLoginUsers } from "../hooks/useLoginUsers";
 export const LoginForm: FC = memo(() => {
     const onSubmitLogin = useLoginUsers();
     return (
-        <form className="mt-8 space-y-6" onSubmit={onSubmitLogin}>
-            {/* <input type="hidden" name="remember" defaultValue="true" /> */}
+        <form className="mt-8 space-y-6" onSubmit={onSubmitLogin} method="POST">
             <div className="-space-y-px rounded-md shadow-sm">
                 <div>
                     <label htmlFor="email-address" className="sr-only">
