@@ -50,8 +50,13 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json(Auth::user());
+            return response()->json([
+                'message' => 'Login Successful',
+                'user' => Auth::user(),
+            ], 200);
         }
-        return response()->json([], 401);
+        return response()->json([
+            'message' => 'ログインに失敗しました'
+        ], 401);
     }
 }

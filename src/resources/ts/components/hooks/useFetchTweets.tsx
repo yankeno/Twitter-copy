@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Tweet } from "../../types/api/tweet";
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
 import { toast } from "react-hot-toast";

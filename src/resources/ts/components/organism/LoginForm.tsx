@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { memo, FC } from "react";
-import { SignInButton } from "../atoms/buttons/SignInButton";
 import { useLoginUsers } from "../hooks/useLoginUsers";
+import { LockClosedIcon } from "@heroicons/react/20/solid";
 
 export const LoginForm: FC = memo(() => {
-    const onSubmitLogin = useLoginUsers();
+    const onSubmitLogin = useLoginUsers;
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+        // };
+        // const onKeyDownSubmit = (e: KeyboardEvent<HTMLElement>) => {
+        //     if (e.key === "Enter") {
+        //         onSubmitLogin(email, password);
+        //         console.log("enter");
+        //     }
+    };
+
     return (
-        <form className="mt-8 space-y-6" onSubmit={onSubmitLogin} method="POST">
+        <div className="mt-8 space-y-6">
             <div className="-space-y-px rounded-md shadow-sm">
                 <div>
                     <label htmlFor="email-address" className="sr-only">
@@ -15,11 +30,11 @@ export const LoginForm: FC = memo(() => {
                     <input
                         id="email-address"
                         name="email"
-                        type="email"
                         autoComplete="email"
                         required
                         className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                         placeholder="Email address"
+                        onChange={onChangeEmail}
                     />
                 </div>
                 <div>
@@ -34,6 +49,7 @@ export const LoginForm: FC = memo(() => {
                         required
                         className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                         placeholder="Password"
+                        onChange={onChangePassword}
                     />
                 </div>
             </div>
@@ -63,7 +79,21 @@ export const LoginForm: FC = memo(() => {
                     </a>
                 </div>
             </div>
-            <SignInButton />
-        </form>
+            <div>
+                <button
+                    type="submit"
+                    onClick={onSubmitLogin(email, password)}
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-400 hover:bg-blue-400/90 py-2 px-4 text-sm font-medium text-white ocus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <LockClosedIcon
+                            className="h-5 w-5 text-blue-500 group-hover:text-blue-500/90"
+                            aria-hidden="true"
+                        />
+                    </span>
+                    Sign in
+                </button>
+            </div>
+        </div>
     );
 });

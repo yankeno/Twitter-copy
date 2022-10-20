@@ -3,6 +3,7 @@ import { FC, memo } from "react";
 
 import { LoginPageIcon } from "../atoms/icons/LoginPageIcon";
 import { LoginForm } from "../organism/LoginForm";
+import { Toaster } from "react-hot-toast";
 
 export const Login: FC = memo(() => {
     return (
@@ -19,6 +20,7 @@ export const Login: FC = memo(() => {
                         <p className="mt-2 text-center text-sm text-gray-600"></p>
                     </div>
                     <LoginForm />
+                    <Toaster />
                 </div>
             </div>
         </>

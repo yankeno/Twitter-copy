@@ -9,7 +9,6 @@ install:
 	docker compose exec app php artisan migrate
 	docker compose exec app php artisan db:seed
 	docker compose exec app chmod -R 777 storage bootstrap/cache
-	cd src && npm install && cd ..
 	@make fresh
 clean:
 	docker compose down --rmi all --volumes --remove-orphans
@@ -35,3 +34,8 @@ app:
 	docker compose exec app bash
 sql:
 	docker compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+clear:
+	docker compose exec app php artisan cache:clear 
+	docker compose exec app php artisan config:clear 
+	docker compose exec app php artisan config:cache
+	docker compose exec app php artisan route:clear
