@@ -35,16 +35,17 @@ export const useLoginUsers = (
         fetch(`${baseUrl}/sanctum/csrf-cookie`, {
             method: "GET",
         }).then((response) => {
+            console.log(response);
             fetch(`${baseUrl}/api/login`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: headers,
                 credentials: "include",
             }).then((res) => {
-                console.log(res);
+                console.log(res.json());
             });
         });
-        // navigate("/home");
+        navigate("/home");
     };
     return onSubmitLogin;
 };
