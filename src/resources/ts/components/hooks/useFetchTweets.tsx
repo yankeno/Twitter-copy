@@ -18,8 +18,15 @@ export const useFetchTweets = () => {
 
         fetch(`${baseUrl}/api/tweet${query}`, {
             method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
         })
             .then((res) => {
+                console.log(res);
+
                 if (!res.ok) {
                     toast.error("ツイートの取得に失敗しました。");
                     return;

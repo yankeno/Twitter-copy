@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -50,13 +49,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json([
-                'message' => 'Login Successful',
-                'user' => Auth::user(),
-            ], 200);
+            return response()->json(Auth::user());
         }
-        return response()->json([
-            'message' => 'ログインに失敗しました'
-        ], 401);
+        return response()->json([], 401);
     }
 }
