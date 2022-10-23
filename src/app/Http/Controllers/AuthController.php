@@ -28,6 +28,11 @@ class AuthController extends Controller
         return response()->json(['message' => 'Login Failure'], 401);
     }
 
+    public function me(Request $request)
+    {
+        return $request->user();
+    }
+
     public function register(Request $request)
     {
         $request->validate([

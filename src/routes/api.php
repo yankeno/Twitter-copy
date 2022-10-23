@@ -38,6 +38,12 @@ Route::post("/logout", [AuthController::class, "logout"]);
 Route::post("/register", [AuthController::class, "register"]);
 
 Route::group([
+    "middleware" => ["auth:sanctum"],
+], function () {
+    Route::get('/me', [AuthController::class, "me"]);
+});
+
+Route::group([
     'prefix' => 'tweet',
     "middleware" => ["auth:sanctum"],
 ], function () {

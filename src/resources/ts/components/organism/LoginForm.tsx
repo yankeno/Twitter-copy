@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { memo, FC } from "react";
-import { useLoginUsers } from "../hooks/useLoginUsers";
+import { useLoginUsers } from "../hooks/useAuth";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 
 export const LoginForm: FC = memo(() => {

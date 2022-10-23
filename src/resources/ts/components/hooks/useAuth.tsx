@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useLoginUser } from "./useLoginUser";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 const headers = {
@@ -12,6 +13,7 @@ export const useLoginUsers = (
     password: string | null
 ) => {
     const navigate = useNavigate();
+    const { setLoginUser } = useLoginUser();
     const isValidInput = (): boolean => {
         if (!email) {
             toast.error("メールアドレスを入力してください。");
@@ -36,7 +38,7 @@ export const useLoginUsers = (
             method: "GET",
             credentials: "include",
         })
-            .then((response) => {
+            .then(() => {
                 fetch(`${baseUrl}/api/login`, {
                     method: "POST",
                     body: JSON.stringify(data),
@@ -44,14 +46,24 @@ export const useLoginUsers = (
                     credentials: "include",
                 })
                     .then((res) => {
-                        console.log(res.json());
+                        if (!res.ok) {
+                            throw new Error(res.statusText);
+                        }
+                        return res.json();
                     })
-                    .then(() => {
+                    .then((data) => {
+                        setLoginUser(data.user);
                         navigate("/home");
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        toast.error(
+                            "メールアドレスまたは\nパスワードをご確認ください。"
+                        );
                     });
             })
             .catch((error) => {
-                toast.error("ログインに失敗しました: " + error);
+                toast.error("通信に失敗しました: " + error);
             });
     };
     return onSubmitLogin;

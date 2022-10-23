@@ -9,17 +9,23 @@ import { Profile } from "../pages/Profile";
 import { Page404 } from "../pages/Page404";
 import { Explore } from "../pages/Explore";
 import { Message } from "../pages/Message";
+import { LoginUserProvider } from "../providers/LoginUserProvider";
+import { AuthRoute } from "./AuthRoute";
 
 export const Router: FC = memo(() => {
     return (
-        <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/notification" element={<Notification />} />
-            <Route path="/message" element={<Message />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<Page404 />} />
-        </Routes>
+        <LoginUserProvider>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route element={<AuthRoute />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/explore" element={<Explore />} />
+                    <Route path="/notification" element={<Notification />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/profile" element={<Profile />} />
+                </Route>
+                <Route path="*" element={<Page404 />} />
+            </Routes>
+        </LoginUserProvider>
     );
 });
