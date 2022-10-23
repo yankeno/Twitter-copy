@@ -25,8 +25,6 @@ export const useFetchTweets = () => {
             },
         })
             .then((res) => {
-                console.log(res);
-
                 if (!res.ok) {
                     toast.error("ツイートの取得に失敗しました。");
                     return;

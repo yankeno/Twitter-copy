@@ -35,17 +35,24 @@ export const useLoginUsers = (
         fetch(`${baseUrl}/sanctum/csrf-cookie`, {
             method: "GET",
             credentials: "include",
-        }).then((response) => {
-            fetch(`${baseUrl}/api/login`, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: headers,
-                credentials: "include",
-            }).then((res) => {
-                console.log(res.json());
+        })
+            .then((response) => {
+                fetch(`${baseUrl}/api/login`, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: headers,
+                    credentials: "include",
+                })
+                    .then((res) => {
+                        console.log(res.json());
+                    })
+                    .then(() => {
+                        navigate("/home");
+                    });
+            })
+            .catch((error) => {
+                toast.error("ログインに失敗しました: " + error);
             });
-        });
-        navigate("/home");
     };
     return onSubmitLogin;
 };

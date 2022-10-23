@@ -25,7 +25,7 @@ class AuthController extends Controller
             ], 200);
         }
 
-        return response()->json(['message' => 'Lopgin Failure'], 401);
+        return response()->json(['message' => 'Login Failure'], 401);
     }
 
     public function register(Request $request)
