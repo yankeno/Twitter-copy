@@ -16,32 +16,10 @@ use App\Http\Controllers\TweetController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-// Route::group(['prefix' => 'auth'], function () {
-//     Route::post("/login", [AuthController::class, 'login']);
-// });
-
-// Route::group([
-//     'middleware' => 'auth:api',
-//     'prefix' => 'auth'
-// ], function () {
-//     Route::post('/logout', [AuthController::class, 'logout']);
-//     Route::post('/refresh', [AuthController::class, 'refresh']);
-//     Route::post('/me', [AuthController::class, 'me']);
-// });
-
 Route::post("/login", [AuthController::class, "login"]);
 Route::post("/logout", [AuthController::class, "logout"]);
 Route::post("/register", [AuthController::class, "register"]);
-
-Route::group([
-    "middleware" => ["auth:sanctum"],
-], function () {
-    Route::get('/me', [AuthController::class, "me"]);
-});
+Route::get('/me', [AuthController::class, "me"])->middleware('auth:sanctum');
 
 Route::group([
     'prefix' => 'tweet',

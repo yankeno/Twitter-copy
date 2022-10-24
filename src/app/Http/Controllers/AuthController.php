@@ -36,15 +36,21 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'between:1,10', 'unique:users'],
+            'name' => ['required', 'between:1,100', 'unique:users'],
+            'famili_name' => ['required', 'betweet:1:50'],
+            'given_name' => ['required', 'betweet:1:50'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'between:6,30', 'confirmed'],
+            'avatar_url' => ['image'],
         ]);
 
         User::create([
             'name' => $request->name,
+            'famili_name' => $request->familyName,
+            'given_name' => $request->givenName,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'avatar_url' => '/storage/img/avatar/default.jpg',
         ]);
     }
 

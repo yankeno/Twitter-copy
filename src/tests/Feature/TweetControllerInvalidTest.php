@@ -3,6 +3,7 @@
 namespace Tests\Unit\Requests;
 
 use Tests\TestCase;
+use App\Models\User;
 
 class TweetControllerInvalidTest extends TestCase
 {
@@ -13,7 +14,10 @@ class TweetControllerInvalidTest extends TestCase
      */
     public function testInvalidateInvalidTweet(int $userId, string $tweet)
     {
-        $response = $this->withHeaders([
+        $user = User::factory()->create();
+
+        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        $response = $this->actingAs($user)->withHeaders([
             'Content-Type' => 'application/json',
         ])->postJson('/api/tweet/create', [
             'userId' => $userId,

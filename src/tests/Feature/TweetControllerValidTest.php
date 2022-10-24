@@ -3,6 +3,7 @@
 namespace Tests\Unit\Requests;
 
 use Tests\TestCase;
+use App\Models\User;
 
 class TweetControllerValidTest extends TestCase
 {
@@ -13,7 +14,10 @@ class TweetControllerValidTest extends TestCase
      */
     public function testValidateValidTweet(int $userId, string $tweet)
     {
-        $response = $this->withHeaders([
+        $user = User::factory()->create();
+
+        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        $response = $this->actingAs($user)->withHeaders([
             'Content-Type' => 'application/json',
         ])->postJson('/api/tweet/create', [
             'userId' => $userId,
@@ -21,7 +25,7 @@ class TweetControllerValidTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertJsonFragment(
-            ['message' => 'successfull']
+            ['message' => 'successful']
         );
     }
 

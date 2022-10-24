@@ -2,13 +2,14 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
 
 class TweetControllerUpdateTweetTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * /tweet/update のバリデーションテスト
      * @dataProvider dataProvider
@@ -17,12 +18,17 @@ class TweetControllerUpdateTweetTest extends TestCase
     public function testControllerUpdateTweetValidation(array $keys, array $values, string $message)
     {
         $dataList = array_combine($keys, $values);
-        $response = $this->withHeaders([
-            'Content-Type' => 'application/json',
-        ])->putJson(
-            '/api/tweet/update',
-            $dataList,
-        );
+
+        $user = User::factory()->create();
+
+        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        $response = $this->actingAs($user)
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+            ])->putJson(
+                '/api/tweet/update',
+                $dataList,
+            );
 
         $response->assertStatus(200)->assertJsonFragment(
             ['message' => $message]
