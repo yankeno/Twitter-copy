@@ -17,10 +17,6 @@ build:
 up:
 	docker compose up -d
 	sleep 5
-	docker compose exec app php artisan migrate:refresh
-	docker compose exec app php artisan db:seed
-	docker compose exec app php artisan migrate:refresh --env=testing
-	docker compose exec app php artisan db:seed --env=testing
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	cd src && npm run dev && cd ..
 	@make fresh
@@ -30,6 +26,8 @@ destroy:
 	docker-compose down --rmi all --volumes --remove-orphans
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
+	docker compose exec app php artisan migrate:fresh --env=testing
+	docker compose exec app php artisan db:seed --env=testing
 app:
 	docker compose exec app bash
 sql:
@@ -39,3 +37,6 @@ clear:
 	docker compose exec app php artisan config:clear 
 	docker compose exec app php artisan config:cache
 	docker compose exec app php artisan route:clear
+test:
+	docker compose exec app php artisan migrate:fresh --seed --env=testing
+	docker compose exec app php artisan test --env=testing

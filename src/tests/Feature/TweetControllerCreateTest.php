@@ -4,17 +4,24 @@ namespace Tests\Unit\Requests;
 
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TweetControllerValidTest extends TestCase
+class TweetControllerCreateTest extends TestCase
 {
+    use RefreshDatabase;
+    protected $seed = true;
+
     /**
-     * @dataProvider validDataProvider
+     * @dataProvider dataProvider
      * @param $userId
      * @param $tweet
+     * @param $message
      */
-    public function testValidateValidTweet(int $userId, string $tweet)
+    public function testInvalidateInvalidTweet(int $userId, string $tweet, string $message)
     {
         $user = User::factory()->create();
+        Log::info($tweet);
 
         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $response = $this->actingAs($user)->withHeaders([
@@ -25,22 +32,35 @@ class TweetControllerValidTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertJsonFragment(
-            ['message' => 'successful']
+            ['message' => $message]
         );
     }
 
-    public function validDataProvider()
+    public function dataProvider()
     {
         return [
             // 正常データ
             [
                 'userId' => 1,
                 'tweet' => 'hello',
+                'message' => 'successful',
             ],
-            // tweet 140文字
             [
                 'userId' => 1,
                 'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ',
+                'message' => 'successful',
+            ],
+
+            // 異常データ
+            [
+                'userId' => 1,
+                'tweet' => '',
+                'message' => 'failed',
+            ],
+            [
+                'userId' => 1,
+                'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJK',
+                'message' => 'failed',
             ],
         ];
     }
