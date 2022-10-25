@@ -9,7 +9,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TweetControllerCreateTest extends TestCase
 {
+    /**
+     * php artisan migrate:fresh を実行してから
+     */
     use RefreshDatabase;
+
+    /**
+     * デフォルトの seeder をテストの前に実行する場合に true を設定
+     * -> これを true にしていないと RfreshDatabase により
+     *    users が空っぽになるので、外部キー制約によりテストを通らなくなる
+     */
     protected $seed = true;
 
     /**
@@ -21,7 +30,6 @@ class TweetControllerCreateTest extends TestCase
     public function testInvalidateInvalidTweet(int $userId, string $tweet, string $message)
     {
         $user = User::factory()->create();
-        Log::info($tweet);
 
         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $response = $this->actingAs($user)->withHeaders([

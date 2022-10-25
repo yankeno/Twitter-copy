@@ -38,5 +38,5 @@ clear:
 	docker compose exec app php artisan config:cache
 	docker compose exec app php artisan route:clear
 test:
-	docker compose exec app php artisan migrate:fresh --seed --env=testing
+	docker compose exec app php artisan config:clear
 	docker compose exec app php artisan test --env=testing

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tweet;
+use Illuminate\Http\JsonResponse;
 
 class TweetController extends Controller
 {
@@ -17,7 +18,7 @@ class TweetController extends Controller
         $this->tweet = new Tweet();
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         try {
             $tweets = Tweet::with(['user:id,account,name,authorized,avatar_url'])
@@ -27,16 +28,16 @@ class TweetController extends Controller
             return response()->json([
                 'message' => 'successful',
                 'tweets' => $tweets,
-            ]);
+            ], 200);
         } catch (Exception $e) {
             Log::error($e);
             return response()->json([
                 'message' => 'failed'
-            ]);
+            ], 400);
         }
     }
 
-    public function create(Request $request)
+    public function create(Request $request): JsonResponse
     {
         try {
             $validator = Validator::make(
@@ -52,7 +53,7 @@ class TweetController extends Controller
                 ]);
                 return response()->json([
                     'message' => 'failed'
-                ]);
+                ], 400);
             }
             DB::beginTransaction();
             Tweet::create([
@@ -60,20 +61,19 @@ class TweetController extends Controller
                 'user_id' => $request->userId,
                 'user_agent' => $request->header('User-Agent'),
             ]);
-            $response = response()->json([
-                'message' => 'successful'
-            ]);
             DB::commit();
-            return $response;
+            return response()->json([
+                'message' => 'successful'
+            ], 201);
         } catch (Exception $e) {
             Log::error($e);
             return response()->json([
                 'message' => 'failed'
-            ]);
+            ], 400);
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request): JsonResponse
     {
         try {
             // tweet は編集後の tweet内容で受け取り、その他は数値で受け取って受け取った値で更新
@@ -92,10 +92,8 @@ class TweetController extends Controller
                     'request' => $request->all(),
                 ]);
                 return response()->json([
-                    // 'message' => $validator->errors(),
                     'message' => 'failed',
-                    'error' => $validator->errors(),
-                ]);
+                ], 400);
             }
             DB::beginTransaction();
             if (isset($request->tweet)) {
@@ -110,20 +108,19 @@ class TweetController extends Controller
             if (isset($request->replies)) {
                 Tweet::where('id', $request->tweetId)->update(['replies' => $request->replies]);
             }
-            $response = response()->json([
-                'message' => 'successful'
-            ]);
             DB::commit();
-            return $response;
+            return response()->json([
+                'message' => 'successful'
+            ], 201);
         } catch (Exception $e) {
             Log::error($e);
             return response()->json([
                 'message' => 'failed'
-            ]);
+            ], 400);
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): JsonResponse
     {
         try {
             $validator = Validator::make(
@@ -138,21 +135,20 @@ class TweetController extends Controller
                 ]);
                 return response()->json([
                     'message' => 'failed'
-                ]);
+                ], 400);
             }
             DB::beginTransaction();
             $this->where('id', $request->tweetId)
                 ->update(['deleted_at' => Carbon::now()]);
-            $response = response()->json([
-                'message' => 'successful'
-            ]);
             DB::commit();
-            return $response;
+            return response()->json([
+                'message' => 'successful'
+            ], 200);
         } catch (Exception $e) {
             Log::error($e);
             return response()->json([
                 'message' => 'failed'
-            ]);
+            ], 400);
         }
     }
 }
