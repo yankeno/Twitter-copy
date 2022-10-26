@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { memo, FC } from "react";
-import { SecondaryButton } from "./SecondaruButton";
+import { SecondaryButton } from "./SecondaryButton";
 import { TweetPostModal } from "../../molecules/modal/TweetPostModal";
 
 export const PrimaryTweetButton: FC = memo(() => {

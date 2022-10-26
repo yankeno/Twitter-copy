@@ -69,7 +69,7 @@ class AuthController extends Controller
                 $request->all(),
                 [
                     'account' => 'required|between:1,50|unique:users,account',
-                    'name' => 'required|between:1,100|unique:users,name',
+                    'name' => 'required|between:1,100',
                     'familyName' => 'required|between:1,50',
                     'givenName' => 'required|between:1,50',
                     'email' => 'required|email|unique:users,email',

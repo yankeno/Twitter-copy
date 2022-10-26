@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { PrimaryButton } from "./PrimaryButton";
 import { useNavigate } from "react-router-dom";
 
-export const ProfileButton: FC = memo(() => {
+export const PrimaryProfileButton: FC = memo(() => {
     const navigate = useNavigate();
     const onClickProfile = () => {
         navigate("/profile");

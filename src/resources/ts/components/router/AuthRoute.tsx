@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useLayoutEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { LoadingTwitterIcon } from "../atoms/icons/LoadingTwitterIcon";
 import { useLoginUser } from "../hooks/useLoginUser";
@@ -27,15 +27,15 @@ export const AuthRoute: FC = memo(() => {
             })
             .then((data) => {
                 setLoginUser(data.user);
-                console.log(loginUser);
             })
             .catch((error) => {
                 console.log(error);
             })
             .finally(() => {
+                console.log(loginUser);
                 setIsLoaded(true);
             });
-    });
+    }, []);
 
     return (
         /**

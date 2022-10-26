@@ -7,9 +7,6 @@ import { TimeLine } from "../organism/TimeLine";
 import { useLoginUser } from "../hooks/useLoginUser";
 
 export const Home: FC = memo(() => {
-    const { loginUser } = useLoginUser();
-    console.log(loginUser);
-
     return (
         <div className="flex justify-start">
             <SideMenu />

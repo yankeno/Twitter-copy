@@ -2,11 +2,6 @@ import React from "react";
 import { memo, FC } from "react";
 import { usePostTweet } from "../../hooks/usePostTweet";
 
-const baseUrl = import.meta.env.VITE_APP_URL;
-const headers = {
-    "Content-Type": "application/json",
-};
-
 export const SecondaryTweetButton: FC = memo(() => {
     const postTweet = usePostTweet();
     const onClickSendTweet = () => {
