@@ -8,10 +8,8 @@ type Props = {
 export const ProfileAvatar: FC<Props> = memo((props) => {
     const { url } = props;
     return (
-        <div className="avatar">
-            <div className="w-14">
-                <img src={url} className="rounded-full" />
-            </div>
+        <div>
+            <img src={url} className="avatar w-14 rounded-full" />
         </div>
     );
 });

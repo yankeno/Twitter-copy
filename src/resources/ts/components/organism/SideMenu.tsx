@@ -7,6 +7,7 @@ import { PrimaryProfileButton } from "../atoms/buttons/PrimaryProfileButton";
 import { PrimaryTweetButton } from "../atoms/buttons/PrimaryTweetButton";
 import { TwitterIcon } from "../atoms/icons/TwitterIcon";
 import { MessageButton } from "../atoms/buttons/MessageButton";
+import { SecondaryProfileButton } from "../atoms/buttons/SecondaryProfileButton";
 
 export const SideMenu: FC = memo(() => {
     return (
@@ -37,6 +38,9 @@ export const SideMenu: FC = memo(() => {
                         </li>
                         <li>
                             <PrimaryTweetButton />
+                        </li>
+                        <li>
+                            <SecondaryProfileButton />
                         </li>
                     </ul>
                 </div>

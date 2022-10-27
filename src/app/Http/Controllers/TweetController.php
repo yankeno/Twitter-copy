@@ -13,11 +13,6 @@ use Illuminate\Http\JsonResponse;
 
 class TweetController extends Controller
 {
-    public function __construct()
-    {
-        $this->tweet = new Tweet();
-    }
-
     public function index(): JsonResponse
     {
         try {
@@ -138,7 +133,7 @@ class TweetController extends Controller
                 ], 400);
             }
             DB::beginTransaction();
-            $this->where('id', $request->tweetId)
+            Tweet::where('id', $request->tweetId)
                 ->update(['deleted_at' => Carbon::now()]);
             DB::commit();
             return response()->json([

@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { memo, FC } from "react";
-import { useLoginUsers } from "../hooks/useAuth";
+import { useLogin } from "../hooks/useLogin";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 
 export const LoginForm: FC = memo(() => {
-    const onSubmitLogin = useLoginUsers;
+    const onSubmitLogin = useLogin;
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,7 @@ export const LoginForm: FC = memo(() => {
     };
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
-        // };
+        // @TODO Enter ボタンで submit できるようにする
         // const onKeyDownSubmit = (e: KeyboardEvent<HTMLElement>) => {
         //     if (e.key === "Enter") {
         //         onSubmitLogin(email, password);

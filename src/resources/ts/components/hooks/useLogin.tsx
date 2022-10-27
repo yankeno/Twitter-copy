@@ -8,10 +8,7 @@ const headers = {
     Accept: "application/json",
 };
 
-export const useLoginUsers = (
-    email: string | null,
-    password: string | null
-) => {
+export const useLogin = (email: string | null, password: string | null) => {
     const navigate = useNavigate();
     const { setLoginUser } = useLoginUser();
     const isValidInput = (): boolean => {

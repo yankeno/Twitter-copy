@@ -22,7 +22,6 @@ export const TweetArea: FC = memo(() => {
                         <TweetTextArea placeholder="いまどうしてる？" />
                     </div>
                 </div>
-
                 <div className="flex items-start">
                     <div className="grid grid-cols-5 w-48 ml-24">
                         <PictureIcon />

@@ -33,7 +33,6 @@ export const useEditTweet = () => {
                 })
                 .then((data) => {
                     if (data.message !== "successful") {
-                        alert(data.message.tweet);
                         return;
                     }
                     window.location.reload();
