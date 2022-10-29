@@ -7,7 +7,7 @@
         @viteReactRefresh
         @vite('resources/ts/app.tsx')
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="overscroll-behavior: none">
         <div id="app"></div>
     </body>
 </html>

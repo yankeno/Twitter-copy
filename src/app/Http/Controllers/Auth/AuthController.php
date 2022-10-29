@@ -65,6 +65,7 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         try {
+            $mesasges = [];
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -82,7 +83,7 @@ class AuthController extends Controller
                     'request' => $request->all(),
                 ]);
                 return response()->json([
-                    'message' => 'failed'
+                    'message' => $validator->errors(),
                 ], 400);
             }
 
@@ -94,7 +95,7 @@ class AuthController extends Controller
                 'given_name' => $request->givenName,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-                'avatar_url' => '/storage/img/avatar/default.jpg',
+                'avatar_url' => '/storage/img/avatar/default.jpg', // デフォルトアバター
             ]);
             DB::commit();
 

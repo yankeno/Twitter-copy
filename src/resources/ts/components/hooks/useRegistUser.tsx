@@ -9,21 +9,14 @@ const headers = {
     Accept: "application/json",
 };
 
-/**
- * ログイン処理と setState 処理はここにまとめる
- */
-export const useLogin = () => {
+export const useRegistUser = () => {
     const navigate = useNavigate();
     const { setLoginUser } = useLoginUser();
+    const [account, setAccount] = useState<string>("");
+    const [familyName, setFamilyName] = useState<string>("");
+    const [givenName, setGivenName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-
-    /**
-     * 文字変換確定時の Enter で発火しないように
-     * onComposition プロパティを state として管理する
-     */
-    const [isComposed, setIsComposed] = useState<boolean>(false);
-
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     };
@@ -31,12 +24,10 @@ export const useLogin = () => {
         setPassword(e.target.value);
     };
     const onKeyDownSubmit = (e: KeyboardEvent<HTMLElement>) => {
-        if (isComposed && e.key === "Enter") {
+        if (e.key === "Enter") {
             onSubmitLogin();
         }
     };
-    const onCompositionStart = () => setIsComposed(false);
-    const onCompositionEnd = () => setIsComposed(true);
 
     const isValidInput = (): boolean => {
         if (!email) {
@@ -55,6 +46,9 @@ export const useLogin = () => {
             return;
         }
         const data = {
+            account: account,
+            familyName: familyName,
+            givenName: givenName,
             email: email,
             password: password,
         };
@@ -92,12 +86,5 @@ export const useLogin = () => {
                 toast.error("通信に失敗しました。");
             });
     };
-    return {
-        onSubmitLogin,
-        onChangeEmail,
-        onChangePassword,
-        onKeyDownSubmit,
-        onCompositionStart,
-        onCompositionEnd,
-    };
+    return { onSubmitLogin, onChangeEmail, onChangePassword, onKeyDownSubmit };
 };

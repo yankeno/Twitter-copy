@@ -24,6 +24,7 @@ class UserFactory extends Factory
             'given_name' => $this->faker->firstName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'date_of_birth' => $this->faker->dateTimeBetween($startDate = '-100 year', $endDate = '-10 year'),
             'authorized' => rand(0, 1),
             'avatar_url' => '/storage/img/avatar/' . rand(1, 100) . '.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

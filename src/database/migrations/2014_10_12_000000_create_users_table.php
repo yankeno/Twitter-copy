@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('given_name', 127);
             $table->string('email', 255)->unique();
             $table->dateTime('email_verified_at')->nullable();
+            $table->dateTime('date_of_birth')->nullable();
             $table->boolean('authorized')->default(0);
             $table->string('avatar_url');
             $table->string('password');
