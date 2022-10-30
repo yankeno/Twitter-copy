@@ -58,7 +58,7 @@ class TweetController extends Controller
             ]);
             DB::commit();
             return response()->json([
-                'message' => 'successful'
+                'message' => 'successful',
             ], 201);
         } catch (Exception $e) {
             Log::error($e);

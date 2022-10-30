@@ -43,6 +43,8 @@ class Kernel extends HttpKernel
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // json レスポンスのエスケープ無効化ミドルウェア
+            \App\Http\Middleware\UnescapeJsonResponse::class,
         ],
     ];
 

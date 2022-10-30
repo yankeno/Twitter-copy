@@ -13,6 +13,7 @@ import { RetweetIcon } from "../atoms/icons/RetweetIcon";
 import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
 import { TweetDeleteModal } from "./modal/TweetDeleteModal";
 import { TweetEditModal } from "./modal/TweetEditModal";
+import { useLoginUser } from "../hooks/useLoginUser";
 
 type Props = {
     tweetId: number;
@@ -63,6 +64,8 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
         createdAt,
     } = props;
 
+    const { loginUser } = useLoginUser();
+
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [showEditModal, setShowEditModal] = useState<boolean>(false);
     const onOpenDeleteModal = () => {
@@ -92,21 +95,26 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         @{account}
                     </span>
                     {/* <span>{createdAt.toLocaleString()}</span> */}
-                    <span className="ml-auto">
-                        <Menu
-                            menuButton={
-                                <MenuButton>
-                                    <TweetEditIcon />
-                                </MenuButton>
-                            }
-                            transition
-                        >
-                            <MenuItem onClick={onOpenEditModal}>編集</MenuItem>
-                            <MenuItem onClick={onOpenDeleteModal}>
-                                削除
-                            </MenuItem>
-                        </Menu>
-                    </span>
+                    {/* ログインユーザのツイートのみ編集・削除を可能とする */}
+                    {account === loginUser?.account ? (
+                        <span className="ml-auto">
+                            <Menu
+                                menuButton={
+                                    <MenuButton>
+                                        <TweetEditIcon />
+                                    </MenuButton>
+                                }
+                                transition
+                            >
+                                <MenuItem onClick={onOpenEditModal}>
+                                    編集
+                                </MenuItem>
+                                <MenuItem onClick={onOpenDeleteModal}>
+                                    削除
+                                </MenuItem>
+                            </Menu>
+                        </span>
+                    ) : null}
                 </div>
                 <div className="py-2 min-h-16 text-gray-800 whitespace-pre-wrap">
                     {tweet}
@@ -125,7 +133,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <RetweetIcon isRetweeted={true} />
+                        <RetweetIcon isRetweeted={false} />
                         <div className="text-[#9ca3af] text-sm">
                             {tweetNumFmt(retweets)}
                         </div>

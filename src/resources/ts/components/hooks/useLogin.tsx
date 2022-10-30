@@ -22,7 +22,7 @@ export const useLogin = () => {
      * 文字変換確定時の Enter で発火しないように
      * onComposition プロパティを state として管理する
      */
-    const [isComposed, setIsComposed] = useState<boolean>(false);
+    const [isComposed, setIsComposed] = useState<boolean>(true);
 
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -38,6 +38,7 @@ export const useLogin = () => {
     const onCompositionStart = () => setIsComposed(false);
     const onCompositionEnd = () => setIsComposed(true);
 
+    // 未入力チェックだけは実施しておく
     const isValidInput = (): boolean => {
         if (!email) {
             toast.error("メールアドレスを入力してください。");
@@ -50,6 +51,8 @@ export const useLogin = () => {
         return true;
     };
     const onSubmitLogin = () => {
+        console.log(isComposed);
+
         if (!isValidInput()) {
             navigate("/");
             return;
@@ -84,6 +87,7 @@ export const useLogin = () => {
                     {
                         loading: "ログイン中...",
                         success: "ログインに成功しました。",
+                        // 細かいエラー内容はあえて表示しない
                         error: "メールアドレスまたは\nパスワードをご確認ください。",
                     }
                 );

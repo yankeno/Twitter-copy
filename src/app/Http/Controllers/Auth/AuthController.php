@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use Exception;
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use App\Rules\AlphanumericOrUnderscore;
 
 class AuthController extends Controller
 {
@@ -65,11 +66,10 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         try {
-            $mesasges = [];
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'account' => 'required|between:1,50|unique:users,account',
+                    'account' => ['required', 'between:1,50', 'unique:users,account', new AlphanumericOrUnderscore],
                     'name' => 'required|between:1,100',
                     'familyName' => 'required|between:1,50',
                     'givenName' => 'required|between:1,50',
@@ -99,8 +99,13 @@ class AuthController extends Controller
             ]);
             DB::commit();
 
+            // user 作成が成功しているならばログインもできる前提
+            Auth::attempt($request->only('email', 'password'));
+            $request->session()->regenerate();
+
             return response()->json([
-                'message' => 'successful'
+                'message' => 'successful',
+                'user' => Auth::user(),
             ], 201);
         } catch (Exception $e) {
             Log::error($e);

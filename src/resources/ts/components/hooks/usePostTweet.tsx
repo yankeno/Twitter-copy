@@ -1,4 +1,5 @@
 import { toast } from "react-hot-toast";
+import { useLoginUser } from "./useLoginUser";
 
 const baseUrl = import.meta.env.VITE_APP_URL;
 const headers = {
@@ -6,6 +7,7 @@ const headers = {
 };
 
 export const usePostTweet = () => {
+    const { loginUser, setLoginUser } = useLoginUser();
     const onClickSendTweet = (elemId: string): void => {
         const tweet = document.getElementById(elemId) as HTMLInputElement;
         if (tweet.value.length > 140) {
@@ -18,7 +20,7 @@ export const usePostTweet = () => {
         }
 
         const data = {
-            userId: 1, // 一旦固定値で入れておく
+            userId: loginUser?.id, // 一旦固定値で入れておく
             tweet: tweet.value,
         };
 

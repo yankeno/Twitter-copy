@@ -9,14 +9,21 @@ import { TweetTextArea } from "../atoms/input/TweetTextArea";
 import { ReserveIcon } from "../atoms/icons/ReserveIcon";
 import { GifIcon } from "../atoms/icons/GifIcon";
 import { SecondaryTweetButton } from "../atoms/buttons/SecondaryTweetButton";
+import { useLoginUser } from "../hooks/useLoginUser";
 
 export const TweetArea: FC = memo(() => {
+    const { loginUser } = useLoginUser();
     return (
         <>
             <div className="h-44 border-solid border-b">
                 <div className="flex justify-start">
                     <div className="h-24 w-14 m-4">
-                        <ProfileAvatar url="/storage/img/avatar/100.jpg" />
+                        <ProfileAvatar
+                            url={
+                                loginUser?.avatar_url ??
+                                "/storage/img/avatar/default.jpg"
+                            }
+                        />
                     </div>
                     <div className="ml-2 mt-4">
                         <TweetTextArea placeholder="いまどうしてる？" />

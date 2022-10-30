@@ -22,7 +22,7 @@ export const LoginForm: FC = memo(() => {
                     <div className="relative font-light">
                         <input
                             type="text"
-                            className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
+                            className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-200 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                             name="email"
                             placeholder="Email"
                             onChange={onChangeEmail}
@@ -35,7 +35,7 @@ export const LoginForm: FC = memo(() => {
                     <div className="relative font-light">
                         <input
                             type="password"
-                            className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
+                            className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-200 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                             name="password"
                             placeholder="Password"
                             onChange={onChangePassword}
@@ -49,7 +49,7 @@ export const LoginForm: FC = memo(() => {
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                        className="h-4 w-4 rounded border-gray-200 text-blue-500 focus:ring-blue-500"
                     />
                     <label
                         htmlFor="remember-me"

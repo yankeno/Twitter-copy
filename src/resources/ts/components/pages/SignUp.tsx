@@ -1,5 +1,6 @@
 import React from "react";
 import { memo, FC } from "react";
+import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoginPageIcon } from "../atoms/icons/LoginPageIcon";
 import { SignUpForm } from "../organism/SignUpForm";
@@ -29,6 +30,7 @@ export const SignUp: FC = memo(() => {
                 </div>
                 <SignUpForm />
             </div>
+            <Toaster />
         </div>
     );
 });
