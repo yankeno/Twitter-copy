@@ -19,7 +19,7 @@ class TweetController extends Controller
             $tweets = Tweet::with(['user:id,account,name,authorized,avatar_url'])
                 ->whereNull('deleted_at')
                 ->latest('created_at')
-                ->paginate(10);
+                ->paginate(20);
             return response()->json([
                 'message' => 'successful',
                 'tweets' => $tweets,
@@ -51,7 +51,7 @@ class TweetController extends Controller
                 ], 400);
             }
             DB::beginTransaction();
-            Tweet::create([
+            $created = Tweet::create([
                 'tweet' => $request->tweet,
                 'user_id' => $request->userId,
                 'user_agent' => $request->header('User-Agent'),
@@ -59,6 +59,7 @@ class TweetController extends Controller
             DB::commit();
             return response()->json([
                 'message' => 'successful',
+                'tweet' => $created,
             ], 201);
         } catch (Exception $e) {
             Log::error($e);
@@ -105,7 +106,8 @@ class TweetController extends Controller
             }
             DB::commit();
             return response()->json([
-                'message' => 'successful'
+                'message' => 'successful',
+                'tweet' => Tweet::find($request->tweetId),
             ], 201);
         } catch (Exception $e) {
             Log::error($e);
@@ -133,11 +135,12 @@ class TweetController extends Controller
                 ], 400);
             }
             DB::beginTransaction();
-            Tweet::where('id', $request->tweetId)
+            $count = Tweet::where('id', $request->tweetId)
                 ->update(['deleted_at' => Carbon::now()]);
             DB::commit();
             return response()->json([
-                'message' => 'successful'
+                'message' => 'successful',
+                'count' => $count,
             ], 200);
         } catch (Exception $e) {
             Log::error($e);
