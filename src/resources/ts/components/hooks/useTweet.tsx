@@ -1,8 +1,4 @@
 import { useContext } from "react";
-import {
-    LoginUserContext,
-    LoginUserContextType,
-} from "../providers/LoginUserProvider";
+import { TweetContext, TweetContextType } from "../providers/TweetProvider";
 
-export const useLoginUser = (): LoginUserContextType =>
-    useContext(LoginUserContext);
+export const useTweet = (): TweetContextType => useContext(TweetContext);

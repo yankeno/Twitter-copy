@@ -29,10 +29,9 @@ export const AuthRoute: FC = memo(() => {
                 setLoginUser(data.user);
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
             })
             .finally(() => {
-                console.log(loginUser);
                 setIsLoaded(true);
             });
     }, []);

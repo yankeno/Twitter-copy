@@ -1,23 +1,18 @@
+import { Ref } from "react";
 import { toast } from "react-hot-toast";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 export const useEditTweet = () => {
     const editTweet = (
         tweetId: number,
-        tweet?: string,
-        likes?: number,
-        retweets?: number,
-        replies?: number
+        tweetText: Ref<HTMLDivElement>,
+        tweet?: string
     ) => {
-        const param: string | null = tweet
-            ? `tweet=${tweet}`
-            : likes
-            ? `likes=${likes}`
-            : retweets
-            ? `retweets=${retweets}`
-            : replies
-            ? `replies=${replies}`
-            : null;
+        if (!tweet) {
+            toast.error("ツイートを入力してください");
+            return;
+        }
+        const param: string = `tweet=${tweet}`;
         toast.promise(
             fetch(
                 `${baseUrl}/api/tweet/update?tweetId=${tweetId}` + `&${param}`,
@@ -35,7 +30,8 @@ export const useEditTweet = () => {
                     if (data.message !== "successful") {
                         throw new Error();
                     }
-                    window.location.reload();
+                    // window.location.reload();
+                    tweetText!.current = data.tweet.tweet;
                 }),
             {
                 loading: "送信中...",

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Tweet } from "../../types/api/tweet";
 import { PostedTweetArea } from "../molecules/PostedTweetArea";
 import { toast } from "react-hot-toast";
+import { useTweet } from "./useTweet";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 let list: Array<JSX.Element>;
@@ -10,7 +11,7 @@ let query: string;
 export const useFetchTweets = () => {
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [nextPage, setNextPage] = useState<number>(1);
-    const [tweets, setTweets] = useState<Array<JSX.Element>>([]);
+    const { tweets, setTweets } = useTweet();
 
     const fetchTweets = () => {
         if (!hasMore) return;

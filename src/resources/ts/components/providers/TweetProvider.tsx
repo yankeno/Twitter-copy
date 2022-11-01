@@ -21,7 +21,7 @@ type Props = {
     children?: ReactNode;
 };
 
-export const LoginUserProvider: FC<Props> = ({ children }) => {
+export const TweetProvider: FC<Props> = ({ children }) => {
     const [tweets, setTweets] = useState<Array<JSX.Element> | []>([]);
     return (
         <TweetContext.Provider value={{ tweets, setTweets }}>

@@ -12,22 +12,28 @@ import { Message } from "../pages/Message";
 import { LoginUserProvider } from "../providers/LoginUserProvider";
 import { AuthRoute } from "./AuthRoute";
 import { SignUp } from "../pages/SignUp";
+import { TweetProvider } from "../providers/TweetProvider";
 
 export const Router: FC = memo(() => {
     return (
         <LoginUserProvider>
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/register" element={<SignUp />} />
-                <Route element={<AuthRoute />}>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/explore" element={<Explore />} />
-                    <Route path="/notification" element={<Notification />} />
-                    <Route path="/message" element={<Message />} />
-                    <Route path="/profile" element={<Profile />} />
-                </Route>
-                <Route path="*" element={<Page404 />} />
-            </Routes>
+            <TweetProvider>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/register" element={<SignUp />} />
+                    <Route element={<AuthRoute />}>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/explore" element={<Explore />} />
+                        <Route
+                            path="/notification"
+                            element={<Notification />}
+                        />
+                        <Route path="/message" element={<Message />} />
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
+                    <Route path="*" element={<Page404 />} />
+                </Routes>
+            </TweetProvider>
         </LoginUserProvider>
     );
 });
