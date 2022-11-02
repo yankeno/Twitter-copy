@@ -9,6 +9,10 @@ type Props = {
 
 export const TweetDeleteModal: FC<Props> = memo((props) => {
     const { tweetId, onClose } = props;
+    const { deleteTweet } = useDeleteTweet();
+    const onClickDeleteTweet = () => {
+        deleteTweet(tweetId);
+    };
     return (
         <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -22,7 +26,7 @@ export const TweetDeleteModal: FC<Props> = memo((props) => {
                             </h3>
                             <button
                                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                onClick={useDeleteTweet(tweetId)}
+                                onClick={onClickDeleteTweet}
                             ></button>
                         </div>
                         {/*body*/}
@@ -40,7 +44,7 @@ export const TweetDeleteModal: FC<Props> = memo((props) => {
                             <button
                                 className="bg-red-500 min-w-[80%] text-white active:bg-red-600 font-bold uppercase text-lg px-6 py-3 rounded-full shadow hover:shadow-lg mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button"
-                                onClick={useDeleteTweet(tweetId)}
+                                onClick={onClickDeleteTweet}
                             >
                                 削除
                             </button>

@@ -1,12 +1,12 @@
-import { Ref } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-hot-toast";
 
 const baseUrl: string = import.meta.env.VITE_APP_URL;
 export const useEditTweet = () => {
     const editTweet = (
         tweetId: number,
-        tweetText: Ref<HTMLDivElement>,
-        tweet?: string
+        setTweetText: Dispatch<SetStateAction<string>>,
+        tweet: string
     ) => {
         if (!tweet) {
             toast.error("ツイートを入力してください");
@@ -30,8 +30,10 @@ export const useEditTweet = () => {
                     if (data.message !== "successful") {
                         throw new Error();
                     }
+                    console.log(data.tweet.tweet);
+
+                    setTweetText(data.tweet.tweet);
                     // window.location.reload();
-                    tweetText!.current = data.tweet.tweet;
                 }),
             {
                 loading: "送信中...",

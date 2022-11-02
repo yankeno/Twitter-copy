@@ -57,9 +57,10 @@ class TweetController extends Controller
                 'user_agent' => $request->header('User-Agent'),
             ]);
             DB::commit();
+            // ツイートの state 更新に使用するので追加したツイートの内容を返却する
             return response()->json([
                 'message' => 'successful',
-                'tweet' => $created,
+                'tweet' => Tweet::find($created->id),
             ], 201);
         } catch (Exception $e) {
             Log::error($e);

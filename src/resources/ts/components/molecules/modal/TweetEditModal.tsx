@@ -1,34 +1,34 @@
 import React, {
     ChangeEvent,
+    Dispatch,
     KeyboardEvent,
-    MutableRefObject,
-    Ref,
+    SetStateAction,
 } from "react";
 import { memo, FC, useState } from "react";
 import { useEditTweet } from "../../hooks/useEditTweet";
-import { toast } from "react-hot-toast";
 
 type Props = {
     tweetId: number;
-    tweet: string;
-    tweetText: MutableRefObject<string>;
+    tweeText: string;
+    setTweetText: Dispatch<SetStateAction<string>>;
     onClose: () => void;
 };
 
 export const TweetEditModal: FC<Props> = memo((props) => {
-    const { tweetId, tweet, tweetText, onClose } = props;
-    const [text, setText] = useState<string>(tweet);
+    const { tweetId, tweeText, setTweetText, onClose } = props;
+    const [text, setText] = useState<string>(tweeText);
     const editTweet = useEditTweet();
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
     const onClickEditTweet = () => {
-        editTweet(tweetId, tweetText, text);
+        editTweet(tweetId, setTweetText, text);
         onClose();
     };
     const onKeyDownEditTweet = (e: KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
-            editTweet(tweetId, tweetText, text);
+            editTweet(tweetId, setTweetText, text);
+            onClose();
         }
     };
     return (

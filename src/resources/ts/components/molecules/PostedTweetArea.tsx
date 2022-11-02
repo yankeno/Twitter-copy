@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { memo, FC, useState } from "react";
 
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
@@ -67,7 +67,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
     const { loginUser } = useLoginUser();
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [showEditModal, setShowEditModal] = useState<boolean>(false);
-    const tweetText = useRef(tweet);
+    const [tweetText, setTweetText] = useState<string>(tweet);
 
     const onOpenDeleteModal = () => {
         setShowDeleteModal(true);
@@ -122,8 +122,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                     className="py-2 min-h-16 text-gray-800 whitespace-pre-wrap"
                     id={"tweet_" + tweetId}
                 >
-                    {/* {tweet} */}
-                    {tweetText.current}
+                    {tweetText}
                 </div>
                 <div className="flex grid grid-cols-3 md:gap-x-16 items-center">
                     <div className="flex items-center">
@@ -155,8 +154,8 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
             {showEditModal ? (
                 <TweetEditModal
                     tweetId={tweetId}
-                    tweet={tweet}
-                    tweetText={tweetText}
+                    tweeText={tweetText}
+                    setTweetText={setTweetText}
                     onClose={onCloseEditModal}
                 />
             ) : null}

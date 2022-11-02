@@ -13,7 +13,7 @@ import { TweetLoadingSpinner } from "../atoms/spinner/TweetLoadingSpinner";
 import { useFetchTweets } from "../hooks/useFetchTweets";
 import { Toaster } from "react-hot-toast";
 
-export const TimeLine: FC = memo(() => {
+export const TimeLine: FC = () => {
     const { tweets, hasMore, fetchTweets } = useFetchTweets();
     const loading = (
         <div className="flex justify-center my-8">
@@ -35,4 +35,4 @@ export const TimeLine: FC = memo(() => {
             <Toaster />
         </>
     );
-});
+};
