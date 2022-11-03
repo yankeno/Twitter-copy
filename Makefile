@@ -35,8 +35,8 @@ sql:
 clear:
 	docker compose exec app php artisan cache:clear 
 	docker compose exec app php artisan config:clear 
-	docker compose exec app php artisan config:cache
 	docker compose exec app php artisan route:clear
 test:
 	docker compose exec app php artisan config:clear
+	docker compose exec app php artisan cache:clear
 	docker compose exec app php artisan test --env=testing
