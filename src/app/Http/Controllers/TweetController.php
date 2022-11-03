@@ -19,7 +19,7 @@ class TweetController extends Controller
             $tweets = Tweet::with(['user:id,account,name,authorized,avatar_url'])
                 ->whereNull('deleted_at')
                 ->latest('created_at')
-                ->paginate(20);
+                ->cursorPaginate(20);
             return response()->json([
                 'message' => 'successful',
                 'tweets' => $tweets,
@@ -60,7 +60,7 @@ class TweetController extends Controller
             // ツイートの state 更新に使用するので追加したツイートの内容を返却する
             return response()->json([
                 'message' => 'successful',
-                'tweet' => Tweet::find($created->id),
+                'tweet' => Tweet::with(['user:id,account,name,authorized,avatar_url'])->find($created->id),
             ], 201);
         } catch (Exception $e) {
             Log::error($e);

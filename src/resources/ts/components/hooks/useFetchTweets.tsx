@@ -10,13 +10,12 @@ let query: string;
 
 export const useFetchTweets = () => {
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [nextPage, setNextPage] = useState<number>(1);
+    const [nextCursor, setNextCursor] = useState<string | null>(null);
     const { tweets, setTweets } = useTweet();
 
     const fetchTweets = () => {
         if (!hasMore) return;
-        query = "?page=" + nextPage;
-
+        query = "?cursor=" + nextCursor;
         fetch(`${baseUrl}/api/tweet${query}`, {
             method: "GET",
             credentials: "include",
@@ -37,9 +36,9 @@ export const useFetchTweets = () => {
                     toast.error("ツイートの取得に失敗しました。");
                     return;
                 }
-                data.tweets.next_page_url === null
+                data.tweets.next_cursor === null
                     ? setHasMore(false)
-                    : setNextPage(data.tweets.current_page + 1);
+                    : setNextCursor(data.tweets.next_cursor);
                 /**
                  * @TODO tweet を編集、削除したときに画面をリロードするのではなく、
                  * 対象の要素自体を編集、削除するように変更する

@@ -51,8 +51,6 @@ export const useLogin = () => {
         return true;
     };
     const onSubmitLogin = () => {
-        console.log(isComposed);
-
         if (!isValidInput()) {
             navigate("/");
             return;

@@ -46,13 +46,8 @@ export const usePostTweet = () => {
                     if (data.message !== "successful") {
                         return;
                     }
-
-                    // window.location.reload();
                     const created: Tweet = data.tweet;
-                    console.log(created);
-
                     setTweets([
-                        ...tweets,
                         <PostedTweetArea
                             key={created.id}
                             tweetId={created.id}
@@ -67,9 +62,8 @@ export const usePostTweet = () => {
                             replies={created.replies}
                             createdAt={created.created_at}
                         />,
+                        ...tweets,
                     ]);
-
-                    // setTweets([...tweets, ...list]);
                 }),
             {
                 loading: "送信中...",

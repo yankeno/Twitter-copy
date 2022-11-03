@@ -30,10 +30,7 @@ export const useEditTweet = () => {
                     if (data.message !== "successful") {
                         throw new Error();
                     }
-                    console.log(data.tweet.tweet);
-
                     setTweetText(data.tweet.tweet);
-                    // window.location.reload();
                 }),
             {
                 loading: "送信中...",

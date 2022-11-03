@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'authorized' => rand(0, 1),
             'avatar_url' => '/storage/img/avatar/' . rand(1, 100) . '.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(100),
         ];
     }
 
