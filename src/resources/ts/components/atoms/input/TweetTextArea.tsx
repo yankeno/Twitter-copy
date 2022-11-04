@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { memo, FC, ChangeEvent } from "react";
 import { usePostTweet } from "../../hooks/usePostTweet";
 
@@ -9,6 +9,7 @@ type Props = {
 export const TweetTextArea: FC<Props> = memo((props) => {
     const { placeholder } = props;
     const postTweet = usePostTweet();
+    const tweetRef = useRef();
     const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
             postTweet("tweetArea");

@@ -39,12 +39,6 @@ export const useFetchTweets = () => {
                 data.tweets.next_cursor === null
                     ? setHasMore(false)
                     : setNextCursor(data.tweets.next_cursor);
-                /**
-                 * @TODO tweet を編集、削除したときに画面をリロードするのではなく、
-                 * 対象の要素自体を編集、削除するように変更する
-                 * -> tweets を JSX.Element の配列ではなく Tweet の配列に変える
-                 * -> JSX.Element のままでもできるか？できるならばそのままの作りで対応する
-                 */
                 list = data.tweets.data.map((tweet: Tweet) => {
                     return (
                         <PostedTweetArea

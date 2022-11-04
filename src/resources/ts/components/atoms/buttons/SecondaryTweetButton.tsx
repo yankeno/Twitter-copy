@@ -1,11 +1,16 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { memo, FC } from "react";
 import { usePostTweet } from "../../hooks/usePostTweet";
 
-export const SecondaryTweetButton: FC = memo(() => {
+type Props = {
+    text: string;
+    setText: Dispatch<SetStateAction<string>>;
+};
+export const SecondaryTweetButton: FC<Props> = memo((props) => {
+    const { text, setText } = props;
     const postTweet = usePostTweet();
     const onClickSendTweet = () => {
-        postTweet("tweetArea");
+        postTweet(text, setText);
     };
     return (
         <button

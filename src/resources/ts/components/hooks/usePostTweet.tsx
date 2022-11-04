@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { toast } from "react-hot-toast";
 import { Tweet } from "../../types/api/tweet";
 
@@ -12,22 +12,24 @@ const headers = {
 };
 
 export const usePostTweet = () => {
-    const { loginUser, setLoginUser } = useLoginUser();
+    const { loginUser } = useLoginUser();
     const { tweets, setTweets } = useTweet();
-    const onClickSendTweet = (elemId: string): void => {
-        const tweet = document.getElementById(elemId) as HTMLInputElement;
-        if (tweet.value.length > 140) {
+    const onClickSendTweet = (
+        text: string,
+        setText: Dispatch<SetStateAction<string>>
+    ): void => {
+        if (text.length > 140) {
             toast.error("ツイートは140以内で入力してください。");
             return;
         }
-        if (tweet.value.length <= 0) {
+        if (text.length <= 0) {
             toast.error("ツイート内容を入力してください。");
             return;
         }
 
         const data = {
             userId: loginUser?.id, // 一旦固定値で入れておく
-            tweet: tweet.value,
+            tweet: text,
         };
 
         toast.promise(
@@ -64,6 +66,7 @@ export const usePostTweet = () => {
                         />,
                         ...tweets,
                     ]);
+                    setText("");
                 }),
             {
                 loading: "送信中...",

@@ -7,9 +7,6 @@ import React, {
     FC,
 } from "react";
 
-/**
- * @TODO tweets は Tweet の配列に変更するのでここの型定義も変更する
- */
 export type TweetContextType = {
     tweets: Array<JSX.Element> | [];
     setTweets: Dispatch<SetStateAction<Array<JSX.Element> | []>>;

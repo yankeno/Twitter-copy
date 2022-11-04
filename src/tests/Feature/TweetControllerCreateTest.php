@@ -27,7 +27,7 @@ class TweetControllerCreateTest extends TestCase
      * @param $tweet
      * @param $message
      */
-    public function testInvalidateInvalidTweet(int $userId, string $tweet, string $message)
+    public function testInvalidateInvalidTweet(int $userId, string $tweet, int $status, string $message)
     {
         $user = User::factory()->create();
 
@@ -39,7 +39,7 @@ class TweetControllerCreateTest extends TestCase
             'tweet' => $tweet,
         ]);
 
-        $response->assertStatus(200)->assertJsonFragment(
+        $response->assertStatus($status)->assertJsonFragment(
             ['message' => $message]
         );
     }
@@ -51,11 +51,13 @@ class TweetControllerCreateTest extends TestCase
             [
                 'userId' => 1,
                 'tweet' => 'hello',
+                'status' => 201,
                 'message' => 'successful',
             ],
             [
                 'userId' => 1,
                 'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ',
+                'status' => 201,
                 'message' => 'successful',
             ],
 
@@ -63,11 +65,13 @@ class TweetControllerCreateTest extends TestCase
             [
                 'userId' => 1,
                 'tweet' => '',
+                'status' => 400,
                 'message' => 'failed',
             ],
             [
                 'userId' => 1,
                 'tweet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJK',
+                'status' => 400,
                 'message' => 'failed',
             ],
         ];

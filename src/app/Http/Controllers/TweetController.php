@@ -109,7 +109,7 @@ class TweetController extends Controller
             return response()->json([
                 'message' => 'successful',
                 'tweet' => Tweet::find($request->tweetId),
-            ], 201);
+            ], 200);
         } catch (Exception $e) {
             Log::error($e);
             return response()->json([
