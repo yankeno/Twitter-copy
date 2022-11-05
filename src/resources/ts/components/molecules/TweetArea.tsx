@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { memo, FC } from "react";
 
 import { EmojiIcon } from "../atoms/icons/EmojiIcon";
@@ -19,9 +19,8 @@ export const TweetArea: FC = memo(() => {
      * -> Cannot read properties of null ("reading useState") が発生する
      */
     const [text, setText] = useState<string>("");
-
     const postTweet = usePostTweet();
-    const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
+    const onKeyDownSendTweet = (e: KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
             postTweet(text, setText);
         }

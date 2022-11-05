@@ -88,7 +88,6 @@ export const useRegistUser = () => {
             email: email,
             password: password,
         };
-
         fetch(`${baseUrl}/api/register`, {
             method: "POST",
             body: JSON.stringify(data),

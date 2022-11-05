@@ -46,7 +46,7 @@ export const usePostTweet = () => {
                 })
                 .then((data) => {
                     if (data.message !== "successful") {
-                        return;
+                        throw new Error();
                     }
                     const created: Tweet = data.tweet;
                     setTweets([
@@ -66,7 +66,6 @@ export const usePostTweet = () => {
                         />,
                         ...tweets,
                     ]);
-                    setText("");
                 }),
             {
                 loading: "送信中...",
@@ -77,6 +76,7 @@ export const usePostTweet = () => {
                 position: "bottom-center",
             }
         );
+        setText("");
     };
     return onClickSendTweet;
 };

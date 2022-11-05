@@ -12,7 +12,7 @@ let isLoggedIn: boolean = false;
 
 export const AuthRoute: FC = memo(() => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { loginUser, setLoginUser } = useLoginUser();
+    const { setLoginUser } = useLoginUser();
     useEffect(() => {
         // /api/me でログインの確認してセッションが切れてなかったらそのまま表示する
         fetch(`${baseUrl}/api/me`, {

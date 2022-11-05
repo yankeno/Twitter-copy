@@ -1,5 +1,6 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import { memo, FC, useState } from "react";
+
 import { usePostTweet } from "../../hooks/usePostTweet";
 
 type Props = {
@@ -13,13 +14,15 @@ export const TweetPostModal: FC<Props> = memo((props) => {
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
-    const onKeyDownSendTweet = (e: React.KeyboardEvent<HTMLElement>) => {
+    const onKeyDownSendTweet = (e: KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
             postTweet(text, setText);
+            onClose();
         }
     };
     const onClickSendTweet = () => {
         postTweet(text, setText);
+        onClose();
     };
     return (
         <>
