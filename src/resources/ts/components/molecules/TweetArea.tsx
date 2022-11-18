@@ -29,6 +29,8 @@ export const TweetArea: FC = memo(() => {
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
+    console.log(text);
+
     return (
         <>
             <div className="h-44 border-solid border-b">
@@ -47,8 +49,9 @@ export const TweetArea: FC = memo(() => {
                             placeholder="いまどうしてる？"
                             onChange={onChangeText}
                             onKeyDown={onKeyDownSendTweet}
+                            value={text}
                             id="tweetArea"
-                        ></textarea>
+                        />
                     </div>
                 </div>
                 <div className="flex items-start">

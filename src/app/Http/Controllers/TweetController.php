@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Tweet;
 use Illuminate\Http\JsonResponse;
+use App\Models\Tweet;
+use App\Tweet\SearchTweets;
 
 class TweetController extends Controller
 {
@@ -145,6 +146,22 @@ class TweetController extends Controller
             ], 200);
         } catch (Exception $e) {
             Log::error($e);
+            return response()->json([
+                'message' => 'failed'
+            ], 400);
+        }
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        try {
+            $searchTweets = new SearchTweets();
+            $tweets = $searchTweets->search($request->input('searchWord'));
+            return response()->json([
+                'message' => 'successful',
+                'tweets' => $tweets,
+            ]);
+        } catch (Exception $e) {
             return response()->json([
                 'message' => 'failed'
             ], 400);

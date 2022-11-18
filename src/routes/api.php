@@ -29,4 +29,5 @@ Route::group([
     Route::post('/create', [TweetController::class, 'create']);
     Route::put('/update', [TweetController::class, 'update']);
     Route::delete('/destroy', [TweetController::class, 'destroy']);
+    Route::post('/search', [TweetController::class, 'search']);
 });

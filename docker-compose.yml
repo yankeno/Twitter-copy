@@ -17,6 +17,7 @@ services:
   db:
     container_name: db
     build: ./infra/mysql
+    platform: linux/x86_64
     volumes:
       - db-store:/var/lib/mysql
     ports:
@@ -26,6 +27,7 @@ services:
   db-test:
     container_name: db-test
     build: ./infra/mysql-test
+    platform: linux/x86_64
     ports:
       - 33061:3306
 volumes:
