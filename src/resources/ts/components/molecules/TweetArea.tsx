@@ -29,7 +29,6 @@ export const TweetArea: FC = memo(() => {
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
-    console.log(text);
 
     return (
         <>

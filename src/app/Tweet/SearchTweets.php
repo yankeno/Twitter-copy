@@ -18,7 +18,7 @@ class SearchTweets
         foreach ($words as $word) {
             $query->where('tweet', 'like', '%' . addcslashes($word, '%_\\') . '%');
         }
-        return $query->get();
+        return $query->with(['user:id,account,name,authorized,avatar_url'])->get();
     }
 
     public function separateSearchWords(string $string): array
