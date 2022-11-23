@@ -14,6 +14,7 @@ import { TweetEditIcon } from "../atoms/icons/TweetEditIcon";
 import { TweetDeleteModal } from "./modal/TweetDeleteModal";
 import { TweetEditModal } from "./modal/TweetEditModal";
 import { useLoginUser } from "../hooks/useLoginUser";
+import { useLocation } from "react-router-dom";
 
 type Props = {
     tweetId: number;
@@ -68,6 +69,7 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [showEditModal, setShowEditModal] = useState<boolean>(false);
     const [tweetText, setTweetText] = useState<string>(tweet);
+    const location = useLocation();
 
     const onOpenDeleteModal = () => {
         setShowDeleteModal(true);
@@ -98,7 +100,9 @@ export const PostedTweetArea: FC<Props> = memo((props) => {
                     </span>
                     {/* <span>{createdAt.toLocaleString()}</span> */}
                     {/* ログインユーザのツイートのみ編集・削除を可能とする */}
-                    {account === loginUser?.account ? (
+                    {/* タイムライン上でのみツイートの編集・削除を可能とする */}
+                    {account === loginUser?.account &&
+                    location.pathname === "/home" ? (
                         <span className="ml-auto">
                             <Menu
                                 menuButton={

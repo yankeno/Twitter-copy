@@ -1,13 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import { memo, FC } from "react";
+
 import { SearchInput } from "../atoms/input/SearchInput";
 import { useResultTweet } from "../hooks/useResultTweet";
 
 type Tab = "trend" | "latest" | "accounts" | "images" | "movies";
 
 export const TweetSearch: FC = memo(() => {
-    // const [selectedTab, setSelectedTab] = useState<Tab>("trend");
-    const { resultTweets, setResultTweets } = useResultTweet();
+    const { resultTweets } = useResultTweet();
     const onChangeTab = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(e.currentTarget.id);
     };
